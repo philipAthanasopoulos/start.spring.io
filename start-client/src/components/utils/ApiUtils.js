@@ -293,7 +293,30 @@ export const getProject = function getProject(url, values, config) {
     if (paramsDependencies) {
       paramsDependencies = `&dependencies=${paramsDependencies}`
     }
-    fetch(`${url}?${params}${paramsDependencies}`, {
+    //add domain class descriptions
+    let domainClassDescriptions = get(values, 'domainClassDescriptions', [])
+      .map((domainClass, index) => {
+        const fields = domainClass.fields
+          .map(
+            (field, fieldIndex) =>
+              `domainClassDescriptions%5B${index}%5D.fields%5B${fieldIndex}%5D.fieldName=${
+                field.fieldName
+              }&domainClassDescriptions%5B${index}%5D.fields%5B${fieldIndex}%5D.classType=${
+                field.classType
+              }${
+                field.type
+                  ? `&domainClassDescriptions%5B${index}%5D.fields%5B${fieldIndex}%5D.type=${field.type}`
+                  : ''
+              }`
+          )
+          .join('&')
+        return `domainClassDescriptions%5B${index}%5D.className=${domainClass.className}&${fields}`
+      })
+      .join('&')
+
+    console.log(domainClassDescriptions)
+
+    fetch(`http://localhost:8000/starter.zip?${params}${paramsDependencies}&${domainClassDescriptions}`, {
       method: 'GET',
     }).then(
       response => {

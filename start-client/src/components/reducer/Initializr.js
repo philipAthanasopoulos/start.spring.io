@@ -9,7 +9,11 @@ export const defaultInitializrContext = {
   values: {
     project: '',
     language: '',
+    database: '',
+    cache: '',
+    apiTemplate: '',
     boot: '',
+    domainClassDescriptions: [],
     meta: {
       name: '',
       group: '',
@@ -41,6 +45,8 @@ const getPersistedOrDefault = json => {
     language:
       localStorage.getItem('language') || get(json, 'defaultValues').language,
     boot: get(json, 'defaultValues').boot,
+    domainClassDescriptions: get(json, 'defaultValues')
+      .domainClassDescriptions || [],
     meta: {
       name: get(json, 'defaultValues.meta').name,
       group: get(json, 'defaultValues.meta').group,
@@ -79,6 +85,12 @@ const persist = changes => {
   }
   if (get(changes, 'meta.java')) {
     localStorage.setItem('java', get(changes, 'meta.java'))
+  }
+  if (get(changes, 'domainClassDescriptions')) {
+    localStorage.setItem(
+      'domainClassDescriptions',
+      get(changes, 'domainClassDescriptions')
+    )
   }
 }
 

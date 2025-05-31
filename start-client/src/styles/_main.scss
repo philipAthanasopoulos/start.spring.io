@@ -1350,3 +1350,45 @@ ul.dependencies-list {
   height: 14px;
   background: $light-placeholder;
 }
+
+//Select and Option
+select {
+  display: inline-block;
+  position: relative;
+  border-radius: 4px;
+  border: 2px solid $light-color;
+  color: $light-color;
+  padding: 0.7rem 1.2rem 0.6rem;
+  font-size: $spring-font-size - 1;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.23rem;
+  background: $light-background;
+  font-family: $spring-font-family;
+  cursor: pointer;
+  @include transition(all calc($spring-transition-duration / 2));
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px $light-border;
+  }
+  &:hover {
+    color: white;
+    background: $light-color;
+  }
+}
+
+option {
+  display: block;
+  padding: 0.7rem 1.2rem 0.6rem;
+  font-size: $spring-font-size - 1;
+  text-transform: uppercase;
+  font-weight: 600;
+  line-height: 1.23rem;
+  background: $light-background;
+  color: $light-color;
+  cursor: pointer;
+  &:hover {
+    background: $light-color;
+    color: white;
+  }
+}

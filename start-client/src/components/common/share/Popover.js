@@ -62,7 +62,7 @@ function Popover({ shareUrl, open, onClose }) {
               </div>
               <div className='popup-content'>
                 {/* eslint-disable-next-line */}
-                  <label htmlFor='input-share'>
+                <label htmlFor='input-share'>
                   Use this link to share the current configuration. Attributes
                   can be removed from the URL if you want to rely on our
                   defaults.

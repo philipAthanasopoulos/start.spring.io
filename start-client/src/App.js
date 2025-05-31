@@ -9,16 +9,17 @@ import Close from './components/common/form/Close'
 import { AppProvider } from './components/reducer/App'
 import { InitializrProvider } from './components/reducer/Initializr'
 
+console.disableYellowBox = true
 render(
   <AppProvider>
     <InitializrProvider>
       <ToastContainer
         closeButton={<Close />}
-        position='top-center'
+        position="top-center"
         hideProgressBar
       />
       <Application />
     </InitializrProvider>
   </AppProvider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 )

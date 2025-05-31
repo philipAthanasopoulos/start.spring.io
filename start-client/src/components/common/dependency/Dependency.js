@@ -7,6 +7,7 @@ import useWindowsUtils from '../../utils/WindowsUtils'
 import { AppContext } from '../../reducer/App'
 import { Button } from '../form'
 import { InitializrContext } from '../../reducer/Initializr'
+import { IconPlus } from "../icons";
 
 function Dependency({ refButton }) {
   const { dispatch, list } = useContext(AppContext)

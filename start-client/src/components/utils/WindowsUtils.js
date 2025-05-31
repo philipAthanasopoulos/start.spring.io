@@ -23,10 +23,12 @@ export default function useWindowsUtils() {
     if (!isClient) {
       return false
     }
+
     function handleResize() {
       setHeight(window.innerHeight)
       setWidth(window.innerWidth)
     }
+
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [isClient])

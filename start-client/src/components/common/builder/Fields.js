@@ -13,6 +13,9 @@ import { AppContext } from '../../reducer/App'
 import { Button, Radio } from '../form'
 import { Dependency } from '../dependency'
 import { InitializrContext } from '../../reducer/Initializr'
+import Checkbox from '../form/Checkbox'
+import CheckboxInput from '../form/Checkbox'
+import DomainClassForm from './DomainClassForm'
 
 function Fields({
   onSubmit,
@@ -40,7 +43,8 @@ function Fields({
         <div className='left'>
           <Warnings />
           <div className='col-sticky'>
-            <div className='colset'>
+            {/* <div className='colset'> */}
+            <div>
               <div className='left'>
                 <Control text='Project'>
                   <Radio
@@ -53,6 +57,7 @@ function Fields({
                   />
                 </Control>
               </div>
+
               <div className='right'>
                 <Control text='Language'>
                   <Radio
@@ -65,8 +70,62 @@ function Fields({
                   />
                 </Control>
               </div>
-            </div>
+              <div className='right'>
+                <Control text='Database'>
+                  <Radio
+                    name='database'
+                    selected={get(values, 'database')}
+                    options={[
+                      { key: 'mysql', text: 'MySQL' },
+                      { key: 'postgres', text: 'PostgreSQL' },
+                      { key: 'oracle', text: 'Oracle' },
+                      { key: 'mssql', text: 'MS SQL' },
+                      { key: 'mongodb', text: 'MongoDB' },
+                    ]}
+                    onChange={value => {
+                      update({ database: value })
+                    }}
+                  />
+                </Control>
+              </div>
+              <div className='right'>
+                <Control text='Generate API template'>
+                  <Radio
+                    name='apiTemplate'
+                    selected={get(values, 'apiTemplate')}
+                    options={[
+                      { key: 'rest', text: 'REST' },
+                      { key: 'graphql', text: 'GraphQL' },
+                      { key: 'grpc', text: 'gRPC' },
+                      { key: 'soap', text: 'SOAP' },
+                    ]}
+                    onChange={value => {
+                      update({ apiTemplate: value })
+                    }}
+                  />
+                </Control>
+              </div>
 
+              <div className='right'>
+                <Control text='Cache'>
+                  <Radio
+                    name='cache'
+                    selected={get(values, 'cache')}
+                    options={[
+                      { key: 'generic', text: 'Generic' },
+                      { key: 'jcache', text: 'JCache ' },
+                      { key: 'hazelcast', text: 'Hazelcast' },
+                      { key: 'infinispan', text: 'Infinispan' },
+                      { key: 'redis', text: 'Redis' },
+                      { key: 'caffeine', text: 'Caffeine' },
+                    ]}
+                    onChange={value => {
+                      update({ cache: value })
+                    }}
+                  />
+                </Control>
+              </div>
+            </div>
             <Control text='Spring Boot'>
               <Radio
                 name='boot'
@@ -101,6 +160,7 @@ function Fields({
                   update({ meta: { group: event.target.value } })
                 }}
               />
+
               <FieldInput
                 id='input-artifact'
                 value={get(values, 'meta.artifact')}
@@ -133,6 +193,7 @@ function Fields({
                   update({ meta: { packageName: event.target.value } })
                 }}
               />
+
               <FieldRadio
                 id='input-packaging'
                 value={get(values, 'meta.packaging')}
@@ -151,6 +212,9 @@ function Fields({
                   update({ meta: { java: value } })
                 }}
               />
+            </Control>
+            <Control text='Entities'>
+              <DomainClassForm />
             </Control>
           </div>
         </div>

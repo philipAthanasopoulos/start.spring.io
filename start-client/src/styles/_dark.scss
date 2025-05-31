@@ -423,3 +423,28 @@ body.dark {
     border-top: 1px solid $dark-border;
   }
 }
+
+//Select and Option
+select {
+  border-color: $dark-color;
+  background: $dark-background;
+  color: $dark-color;
+  padding: 0.5rem;
+  font-size: 1rem;
+  &:focus {
+    box-shadow: 0 0 0 4px lighten($dark-border, 4);
+    outline: none;
+  }
+  &:hover {
+    background: lighten($dark-background, 5%);
+  }
+}
+
+option {
+  background: $dark-background;
+  color: $dark-color;
+  padding: 0.5rem;
+  &:hover {
+    background: lighten($dark-background, 5%);
+  }
+}

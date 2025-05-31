@@ -40,7 +40,7 @@ describe('getLanguage', () => {
  */
 describe('createTree', () => {
   // eslint-disable-next-line
-  it('should create a tree', async() => {
+  it('should create a tree', async () => {
     const zipJs = new JSZip()
     await fs.readFile(
       path.resolve('./dev/starter.mock.zip'),
@@ -74,7 +74,7 @@ describe('createTree', () => {
  */
 describe('findRoot', () => {
   // eslint-disable-next-line
-  it('should return the right value', async() => {
+  it('should return the right value', async () => {
     const zipJs = new JSZip()
     await fs.readFile(
       path.resolve('./dev/starter.mock.zip'),

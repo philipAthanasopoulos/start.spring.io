@@ -16,10 +16,10 @@ import useWindowsUtils from './utils/WindowsUtils'
 import { AppContext } from './reducer/App'
 import { DependencyDialog } from './common/dependency'
 import { Fields, Loading } from './common/builder'
-import { Form } from './common/form'
 import { Header, SideLeft, SideRight } from './common/layout'
 import { InitializrContext } from './reducer/Initializr'
 import { getConfig, getInfo, getProject } from './utils/ApiUtils'
+import { Form } from './common/form'
 
 const Explore = lazy(() => import('./common/explore/Explore'))
 const Share = lazy(() => import('./common/share/Share'))
@@ -55,7 +55,7 @@ export default function Application() {
 
   useEffect(() => {
     if (windowsUtils.origin) {
-      const url = `${windowsUtils.origin}/metadata/client`
+      const url = `http://localhost:8000/metadata/client`
       getInfo(url).then(jsonConfig => {
         const response = getConfig(jsonConfig)
         dispatchInitializr({ type: 'COMPLETE', payload: { ...response } })
