@@ -1,10 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FieldInput } from './index'
 import get from 'lodash/get'
 import { InitializrContext } from '../../reducer/Initializr'
 import { Button } from '../form'
-import { IconPlus } from '../icons'
-import Select from '../explore/Select'
 
 function DomainClassForm() {
   const {

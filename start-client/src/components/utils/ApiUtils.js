@@ -314,11 +314,25 @@ export const getProject = function getProject(url, values, config) {
       })
       .join('&')
 
-    console.log(domainClassDescriptions)
+    //add associations
+    let associationDescriptions = get(values, 'associationDescriptions', [])
+      .map((association, index) => {
+        return `associationDescriptions%5B${index}%5D.firstClassName=${
+          association.firstClassName
+        }&associationDescriptions%5B${index}%5D.assotiationType=${
+          association.assotiationType
+        }&associationDescriptions%5B${index}%5D.secondClassName=${
+          association.secondClassName
+        }`
+      })
+      .join('&')
 
-    fetch(`http://localhost:8000/starter.zip?${params}${paramsDependencies}&${domainClassDescriptions}`, {
-      method: 'GET',
-    }).then(
+    fetch(
+      `http://localhost:8000/starter.zip?${params}${paramsDependencies}&${domainClassDescriptions}&${associationDescriptions}`,
+      {
+        method: 'GET',
+      }
+    ).then(
       response => {
         if (response.status === 200) {
           resolve(response.blob())

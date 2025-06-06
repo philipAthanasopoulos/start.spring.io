@@ -16,6 +16,7 @@ import { InitializrContext } from '../../reducer/Initializr'
 import Checkbox from '../form/Checkbox'
 import CheckboxInput from '../form/Checkbox'
 import DomainClassForm from './DomainClassForm'
+import AssociationDescriptionsForm from "./AssociationDescriptionsForm";
 
 function Fields({
   onSubmit,
@@ -215,6 +216,9 @@ function Fields({
             </Control>
             <Control text='Entities'>
               <DomainClassForm />
+            </Control>
+            <Control text='Associations'>
+              <AssociationDescriptionsForm />
             </Control>
           </div>
         </div>
