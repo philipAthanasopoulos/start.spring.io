@@ -30,8 +30,8 @@ function DomainClassForm() {
               update({ domainClassDescriptions: updatedDescriptions })
             }}
           />
-          <h3>Fields</h3>
-          <div>
+          <div style={{ paddingLeft: '30px' }}>
+            <h3>Fields</h3>
             {description.fields.map((field, fieldIndex) => (
               <div
                 key={fieldIndex}
@@ -67,37 +67,38 @@ function DomainClassForm() {
                   }}
                 >
                   <option selected></option>
-                  <option value='java.lang.String'>String</option>
-                  <option value='java.lang.Long'>Long</option>
+                  <option value='java.lang.String'>string</option>
+                  <option value='java.lang.Long'>long</option>
                   <option value='java.lang.int'>int</option>
+                  <option value='java.lang.double'>double</option>
                   <option value='java.lang.boolean'>boolean</option>
-                  <option value='java.lang.Date'>Date</option>
+                  <option value='java.lang.Date'>date</option>
                 </select>
               </div>
             ))}
+            <Button
+              id={`add-field-${index}`}
+              variant='primary'
+              onClick={event => {
+                const updatedDescriptions = [
+                  ...get(values, 'domainClassDescriptions', []),
+                ]
+                updatedDescriptions[index].fields.push({
+                  fieldName: '',
+                  classType: '',
+                })
+                update({ domainClassDescriptions: updatedDescriptions })
+              }}
+            >
+              <span style={{ display: 'flex', alignItems: 'center' }}>
+                <i
+                  className={'bi bi-node-plus'}
+                  style={{ paddingRight: '10px' }}
+                />
+                Add Field
+              </span>
+            </Button>
           </div>
-          <Button
-            id={`add-field-${index}`}
-            variant='primary'
-            onClick={event => {
-              const updatedDescriptions = [
-                ...get(values, 'domainClassDescriptions', []),
-              ]
-              updatedDescriptions[index].fields.push({
-                fieldName: '',
-                classType: '',
-              })
-              update({ domainClassDescriptions: updatedDescriptions })
-            }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center' }}>
-              <i
-                className={'bi bi-node-plus'}
-                style={{ paddingRight: '10px' }}
-              />
-              Add Field
-            </span>
-          </Button>
         </div>
       ))}
       <Button
