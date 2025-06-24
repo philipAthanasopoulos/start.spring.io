@@ -16,7 +16,7 @@ import { InitializrContext } from '../../reducer/Initializr'
 import Checkbox from '../form/Checkbox'
 import CheckboxInput from '../form/Checkbox'
 import DomainClassForm from './DomainClassForm'
-import AssociationDescriptionsForm from "./AssociationDescriptionsForm";
+import AssociationDescriptionsForm from './AssociationDescriptionsForm'
 
 function Fields({
   onSubmit,
@@ -67,61 +67,6 @@ function Fields({
                     options={get(config, 'lists.language')}
                     onChange={value => {
                       update({ language: value })
-                    }}
-                  />
-                </Control>
-              </div>
-              <div className='right'>
-                <Control text='Database'>
-                  <Radio
-                    name='database'
-                    selected={get(values, 'database')}
-                    options={[
-                      { key: 'mysql', text: 'MySQL' },
-                      { key: 'postgres', text: 'PostgreSQL' },
-                      { key: 'oracle', text: 'Oracle' },
-                      { key: 'mssql', text: 'MS SQL' },
-                      { key: 'mongodb', text: 'MongoDB' },
-                    ]}
-                    onChange={value => {
-                      update({ database: value })
-                    }}
-                  />
-                </Control>
-              </div>
-              <div className='right'>
-                <Control text='Generate API template'>
-                  <Radio
-                    name='apiTemplate'
-                    selected={get(values, 'apiTemplate')}
-                    options={[
-                      { key: 'rest', text: 'REST' },
-                      { key: 'graphql', text: 'GraphQL' },
-                      { key: 'grpc', text: 'gRPC' },
-                      { key: 'soap', text: 'SOAP' },
-                    ]}
-                    onChange={value => {
-                      update({ apiTemplate: value })
-                    }}
-                  />
-                </Control>
-              </div>
-
-              <div className='right'>
-                <Control text='Cache'>
-                  <Radio
-                    name='cache'
-                    selected={get(values, 'cache')}
-                    options={[
-                      { key: 'generic', text: 'Generic' },
-                      { key: 'jcache', text: 'JCache ' },
-                      { key: 'hazelcast', text: 'Hazelcast' },
-                      { key: 'infinispan', text: 'Infinispan' },
-                      { key: 'redis', text: 'Redis' },
-                      { key: 'caffeine', text: 'Caffeine' },
-                    ]}
-                    onChange={value => {
-                      update({ cache: value })
                     }}
                   />
                 </Control>

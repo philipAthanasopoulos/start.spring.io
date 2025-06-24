@@ -290,6 +290,11 @@ export const getProject = function getProject(url, values, config) {
       .filter(dep => !!dep)
       .join(',')
 
+    // add thymeleaf, web, lombok, jpa
+    paramsDependencies = paramsDependencies
+      ? `${paramsDependencies},thymeleaf,web,lombok,jpa`
+      : 'thymeleaf,web,lombok,jpa'
+
     if (paramsDependencies) {
       paramsDependencies = `&dependencies=${paramsDependencies}`
     }
@@ -310,20 +315,18 @@ export const getProject = function getProject(url, values, config) {
               }`
           )
           .join('&')
-        return `domainClassDescriptions%5B${index}%5D.className=${domainClass.className}&${fields}`
+        if (domainClass.generateRestController === undefined) domainClass.generateRestController = false;
+        if (domainClass.generateFrontendController === undefined) domainClass.generateFrontendController = false;
+        const generateRestController = `&domainClassDescriptions%5B${index}%5D.generateRestController=` + domainClass.generateRestController
+        const generateFrontendController = `&domainClassDescriptions%5B${index}%5D.generateFrontendController=` + domainClass.generateFrontendController
+        return `domainClassDescriptions%5B${index}%5D.className=${domainClass.className}&${fields}&${generateRestController}${generateFrontendController}`
       })
       .join('&')
 
     //add associations
     let associationDescriptions = get(values, 'associationDescriptions', [])
       .map((association, index) => {
-        return `associationDescriptions%5B${index}%5D.firstClassName=${
-          association.firstClassName
-        }&associationDescriptions%5B${index}%5D.assotiationType=${
-          association.assotiationType
-        }&associationDescriptions%5B${index}%5D.secondClassName=${
-          association.secondClassName
-        }`
+        return `associationDescriptions%5B${index}%5D.firstClassName=${association.firstClassName}&associationDescriptions%5B${index}%5D.assotiationType=${association.assotiationType}&associationDescriptions%5B${index}%5D.secondClassName=${association.secondClassName}`
       })
       .join('&')
 

@@ -448,3 +448,53 @@ option {
     background: lighten($dark-background, 5%);
   }
 }
+
+//Checkbox
+.input-checkbox {
+  background: $dark-background;
+  border: 2px solid $dark-color;
+  color: $dark-color;
+  border-radius: 4px;
+  width: 1.4em;
+  height: 1.4em;
+  appearance: none;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  margin: 0.5em;
+  margin-left: 0;
+  transition: border-color 0.15s, background 0.15s;
+
+  &:checked {
+    background: $dark-primary;
+    border-color: $dark-primary;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0.32em;
+      top: 0.1em;
+      width: 0.3em;
+      height: 0.6em;
+      border: solid white;
+      border-width: 0 0.18em 0.18em 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    border-color: $dark-primary;
+  }
+
+  &:disabled {
+    background: $dark-background;
+    border-color: rgba($dark-color, 0.5);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}

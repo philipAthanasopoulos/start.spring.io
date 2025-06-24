@@ -18,6 +18,7 @@ function DomainClassForm() {
     <div>
       {get(values, 'domainClassDescriptions', []).map((description, index) => (
         <div key={`description-${index}`}>
+          <hr />
           <FieldInput
             id={`input-domainClassName-${index}`}
             value={description.className || ''}
@@ -38,7 +39,6 @@ function DomainClassForm() {
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  marginBottom: '10px',
                 }}
               >
                 <FieldInput
@@ -57,6 +57,7 @@ function DomainClassForm() {
                 <select
                   name={`fieldType-${fieldIndex}`}
                   style={{ marginLeft: '10px' }}
+                  value={field.classType || ''}
                   onChange={event => {
                     const updatedDescriptions = [
                       ...get(values, 'domainClassDescriptions', []),
@@ -66,13 +67,12 @@ function DomainClassForm() {
                     update({ domainClassDescriptions: updatedDescriptions })
                   }}
                 >
-                  <option selected></option>
                   <option value='java.lang.String'>string</option>
                   <option value='java.lang.Long'>long</option>
                   <option value='java.lang.int'>int</option>
                   <option value='java.lang.double'>double</option>
                   <option value='java.lang.boolean'>boolean</option>
-                  <option value='java.lang.Date'>date</option>
+                  <option value='java.util.Date'>date</option>
                 </select>
               </div>
             ))}
@@ -85,7 +85,7 @@ function DomainClassForm() {
                 ]
                 updatedDescriptions[index].fields.push({
                   fieldName: '',
-                  classType: '',
+                  classType: 'java.lang.String',
                 })
                 update({ domainClassDescriptions: updatedDescriptions })
               }}
@@ -98,7 +98,48 @@ function DomainClassForm() {
                 Add Field
               </span>
             </Button>
+            <div>
+              <input
+                type='checkbox'
+                id={`generateRestController-${index}`}
+                className={'input-checkbox'}
+                checked={!!description.generateRestController}
+                onChange={event => {
+                  const updatedDescriptions = [
+                    ...get(values, 'domainClassDescriptions', []),
+                  ]
+                  updatedDescriptions[index].generateRestController =
+                    event.target.checked
+                  update({ domainClassDescriptions: updatedDescriptions })
+                  console.log(get(values, 'domainClassDescriptions', []))
+                }}
+              />
+              <label htmlFor={`generateRestController-${index}`}>
+                Generate REST Controller
+              </label>
+            </div>
+            <div>
+              <input
+                type='checkbox'
+                id={`generateFrontendController-${index}`}
+                className={'input-checkbox'}
+                checked={!!description.generateFrontendController}
+                onChange={event => {
+                  const updatedDescriptions = [
+                    ...get(values, 'domainClassDescriptions', []),
+                  ]
+                  updatedDescriptions[index].generateFrontendController =
+                    event.target.checked
+                  update({ domainClassDescriptions: updatedDescriptions })
+                  console.log(get(values, 'domainClassDescriptions', []))
+                }}
+              />
+              <label htmlFor={`generateFrontendController-${index}`}>
+                Generate Frontend Controller
+              </label>
+            </div>
           </div>
+
         </div>
       ))}
       <Button
@@ -109,7 +150,12 @@ function DomainClassForm() {
             ...get(values, 'domainClassDescriptions', []),
             {
               className: '',
-              fields: [],
+              fields: [
+                {
+                  fieldName: 'id',
+                  classType: 'java.lang.Long',
+                },
+              ],
             },
           ]
           update({ domainClassDescriptions: updatedDescriptions })
