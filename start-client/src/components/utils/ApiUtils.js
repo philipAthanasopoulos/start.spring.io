@@ -317,9 +317,11 @@ export const getProject = function getProject(url, values, config) {
           .join('&')
         if (domainClass.generateRestController === undefined) domainClass.generateRestController = false;
         if (domainClass.generateFrontendController === undefined) domainClass.generateFrontendController = false;
+        if (domainClass.useLombok === undefined) domainClass.useLombok = false;
         const generateRestController = `&domainClassDescriptions%5B${index}%5D.generateRestController=` + domainClass.generateRestController
         const generateFrontendController = `&domainClassDescriptions%5B${index}%5D.generateFrontendController=` + domainClass.generateFrontendController
-        return `domainClassDescriptions%5B${index}%5D.className=${domainClass.className}&${fields}&${generateRestController}${generateFrontendController}`
+        const useLombok = `&domainClassDescriptions%5B${index}%5D.useLombok=` + domainClass.useLombok
+        return `domainClassDescriptions%5B${index}%5D.className=${domainClass.className}&${fields}&${generateRestController}${generateFrontendController}${useLombok}`
       })
       .join('&')
 

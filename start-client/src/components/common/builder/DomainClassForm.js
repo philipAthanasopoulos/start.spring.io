@@ -139,7 +139,6 @@ function DomainClassForm() {
               </label>
             </div>
           </div>
-
         </div>
       ))}
       <Button
@@ -166,6 +165,27 @@ function DomainClassForm() {
           Add Class
         </span>
       </Button>
+      <div>
+        <input
+          type='checkbox'
+          id={`use-lombok-checkbox`}
+          className={'input-checkbox'}
+          checked={get(values, 'domainClassDescriptions', []).every(
+            desc => desc.useLombok
+          )}
+          onChange={event => {
+            const updatedDescriptions = [
+              ...get(values, 'domainClassDescriptions', []),
+            ]
+            updatedDescriptions.forEach(desc => {
+              desc.useLombok = event.target.checked
+            })
+            update({ domainClassDescriptions: updatedDescriptions })
+            console.log(get(values, 'domainClassDescriptions', []))
+          }}
+        />
+        <label htmlFor={`use-lombok`}>Use Lombok</label>
+      </div>
     </div>
   )
 }
