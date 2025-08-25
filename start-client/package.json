@@ -11,6 +11,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "webpack serve --progress --config webpack.dev.js",
+    "start:prod": "serve -s dist -p 8080",
     "build": "webpack --mode production --config webpack.prod.js",
     "test": "jest --reporters=jest-standard-reporter",
     "prettier": "prettier --write \"**/*.{{c,le,sc}ss,g?(raph)ql,htm?(l),js?(on|on5|onl|x|s),md?(x|wn),m?(ark)down,mkdn,ts?(x),vue,y?(a)ml}\"",
@@ -107,7 +108,8 @@
     "react-icons": "^5.5.0",
     "react-markdown": "^8.0.3",
     "react-toastify": "^9.0.4",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "serve": "^14.2.4"
   },
   "prettier": {
     "endOfLine": "lf",
