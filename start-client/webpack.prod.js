@@ -20,16 +20,17 @@ const config = {
     },
   },
   output: {
-    publicPath: './',
+    publicPath: '/',
+    clean:true,
   },
   plugins: [
-    // new BundleAnalyzerPlugin({
-    //   analyzerMode: 'static',
-    //   openAnalyzer: true,
-    //   generateStatsFile: true,
-    //   statsFilename: '../analysis/stats.json',
-    //   reportFilename: '../analysis/bundle-analyzer.html',
-    // }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: true,
+      generateStatsFile: true,
+      statsFilename: '../analysis/stats.json',
+      reportFilename: '../analysis/bundle-analyzer.html',
+    }),
     new LodashWebpackPlugin({
       paths: true,
     }),
