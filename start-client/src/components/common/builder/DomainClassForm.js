@@ -4,6 +4,7 @@ import get from 'lodash/get'
 import { InitializrContext } from '../../reducer/Initializr'
 import { Button } from '../form'
 import { IconRemove } from '../icons'
+import options from './typeOptions.json'
 
 function DomainClassForm() {
   const {
@@ -170,12 +171,15 @@ function DomainClassForm() {
                     handleFieldTypeChange(event, index, fieldIndex)
                   }
                 >
-                  <option value='java.lang.String'>string</option>
-                  <option value='java.lang.Long'>long</option>
-                  <option value='java.lang.int'>int</option>
-                  <option value='java.lang.double'>double</option>
-                  <option value='java.lang.boolean'>boolean</option>
-                  <option value='java.util.Date'>date</option>
+                  {options.map(group => (
+                    <optgroup key={group.type} label={group.type}>
+                      {group.values.map(value => (
+                        <option key={value.value} value={value.value}>
+                          {value.label}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ))}
                 </select>
                 <a
                   href='/'

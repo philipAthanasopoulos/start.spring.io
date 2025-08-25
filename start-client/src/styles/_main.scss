@@ -1360,7 +1360,7 @@ select {
   color: $light-color;
   padding: 0.7rem 1.2rem 0.6rem;
   font-size: $spring-font-size - 1;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
   line-height: 1.23rem;
   background: $light-background;
@@ -1377,11 +1377,16 @@ select {
   }
 }
 
+optgroup {
+  text-transform: uppercase;
+  background-color: $light-primary;
+}
+
 option {
   display: block;
   padding: 0.7rem 1.2rem 0.6rem;
   font-size: $spring-font-size - 1;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 600;
   line-height: 1.23rem;
   background: $light-background;

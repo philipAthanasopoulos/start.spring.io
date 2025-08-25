@@ -1,0 +1,116 @@
+[
+  {
+    "type": "text",
+    "values": [
+      {
+        "value": "java.lang.String",
+        "label": "string"
+      },
+      {
+        "value": "java.lang.Character",
+        "label": "char"
+      }
+    ]
+  },
+  {
+    "type": "numbers",
+    "values": [
+      {
+        "value": "java.lang.Byte",
+        "label": "byte"
+      },
+      {
+        "value": "java.lang.Short",
+        "label": "short"
+      },
+      {
+        "value": "java.lang.Integer",
+        "label": "int"
+      },
+      {
+        "value": "java.lang.Long",
+        "label": "long"
+      },
+      {
+        "value": "java.lang.Float",
+        "label": "float"
+      },
+      {
+        "value": "java.lang.Double",
+        "label": "double"
+      },
+      {
+        "value": "java.math.BigInteger",
+        "label": "BigInteger"
+      },
+      {
+        "value": "java.math.BigDecimal",
+        "label": "BigDecimal"
+      }
+    ]
+  },
+  {
+    "type": "boolean",
+    "values": [
+      {
+        "value": "java.lang.Boolean",
+        "label": "boolean"
+      }
+    ]
+  },
+  {
+    "type": "dates",
+    "values": [
+      {
+        "value": "java.util.Date",
+        "label": "Date (legacy)"
+      },
+      {
+        "value": "java.time.LocalDate",
+        "label": "LocalDate"
+      },
+      {
+        "value": "java.time.LocalTime",
+        "label": "LocalTime"
+      },
+      {
+        "value": "java.time.LocalDateTime",
+        "label": "LocalDateTime"
+      },
+      {
+        "value": "java.time.ZonedDateTime",
+        "label": "ZonedDateTime"
+      },
+      {
+        "value": "java.time.Instant",
+        "label": "Instant"
+      }
+    ]
+  },
+  {
+    "type": "identifiers",
+    "values": [
+      {
+        "value": "java.util.UUID",
+        "label": "UUID"
+      }
+    ]
+  },
+  {
+    "type": "files",
+    "values": [
+      {
+        "value": "java.io.File",
+        "label": "File"
+      },
+      {
+        "value": "java.net.URL",
+        "label": "URL"
+      },
+      {
+        "value": "java.net.URI",
+        "label": "URI"
+      }
+    ]
+  }
+]
