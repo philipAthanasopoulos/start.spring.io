@@ -333,7 +333,7 @@ export const getProject = function getProject(url, values, config) {
       .join('&')
 
     fetch(
-      `http://localhost:8000/starter.zip?${params}${paramsDependencies}&${domainClassDescriptions}&${associationDescriptions}`,
+      `${process.env.REACT_APP_API_URL}/starter.zip?${params}${paramsDependencies}&${domainClassDescriptions}&${associationDescriptions}`,
       {
         method: 'GET',
       }
