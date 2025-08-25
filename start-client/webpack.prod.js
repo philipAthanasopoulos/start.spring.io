@@ -20,19 +20,16 @@ const config = {
     },
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    publicPath: '/',
-    filename: 'static/js/[name].[contenthash].js',
-    chunkFilename: 'static/js/[name].[contenthash].chunk.js',
+    publicPath: './',
   },
   plugins: [
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false, // Changed to false for production
-      generateStatsFile: true,
-      statsFilename: '../analysis/stats.json',
-      reportFilename: '../analysis/bundle-analyzer.html',
-    }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: 'static',
+    //   openAnalyzer: true,
+    //   generateStatsFile: true,
+    //   statsFilename: '../analysis/stats.json',
+    //   reportFilename: '../analysis/bundle-analyzer.html',
+    // }),
     new LodashWebpackPlugin({
       paths: true,
     }),
