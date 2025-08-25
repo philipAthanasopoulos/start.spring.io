@@ -20,12 +20,15 @@ const config = {
     },
   },
   output: {
-    publicPath: './',
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
+    filename: 'static/js/[name].[contenthash].js',
+    chunkFilename: 'static/js/[name].[contenthash].chunk.js',
   },
   plugins: [
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
-      openAnalyzer: true,
+      openAnalyzer: false, // Changed to false for production
       generateStatsFile: true,
       statsFilename: '../analysis/stats.json',
       reportFilename: '../analysis/bundle-analyzer.html',
