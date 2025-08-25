@@ -17,5 +17,4 @@ export { IconMoon } from './Icons'
 export { IconRemove } from './Icons'
 export { IconEnter } from './Icons'
 export { IconHistory } from './Icons'
-
 export { IconSpring } from './IconSpring'

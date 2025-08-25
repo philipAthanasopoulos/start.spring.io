@@ -13,7 +13,20 @@ export const defaultInitializrContext = {
     cache: '',
     apiTemplate: '',
     boot: '',
-    domainClassDescriptions: [],
+    domainClassDescriptions: [
+      {
+        className: '',
+        fields: [
+          {
+            fieldName: '',
+            classType: '',
+          },
+        ],
+        generateRestController: false,
+        generateFrontendController: false,
+        useLombok: false,
+      },
+    ],
     associationDescriptions: [],
     meta: {
       name: '',
@@ -175,6 +188,277 @@ export function reducer(state, action) {
     }
     case 'CLEAR_WARNINGS': {
       return { ...state, warnings: {} }
+    }
+    case 'ADD_DOMAIN_CLASS': {
+      const values = { ...get(state, 'values') }
+      const newDomainClass = {
+        className: '',
+        fields: [
+          {
+            fieldName: 'id',
+            classType: 'java.lang.Long',
+          },
+        ],
+        generateRestController: false,
+        generateFrontendController: false,
+        useLombok: false,
+      }
+      values.domainClassDescriptions = [
+        ...get(values, 'domainClassDescriptions', []),
+        newDomainClass,
+      ]
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'REMOVE_DOMAIN_CLASS': {
+      const index = get(action, 'payload.index')
+      const values = { ...get(state, 'values') }
+      values.domainClassDescriptions = get(
+        values,
+        'domainClassDescriptions',
+        []
+      ).filter((_, i) => i !== index)
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'UPDATE_DOMAIN_CLASS': {
+      const { index, field, value } = get(action, 'payload')
+      const values = { ...get(state, 'values') }
+      const updatedDescriptions = [
+        ...get(values, 'domainClassDescriptions', []),
+      ]
+      updatedDescriptions[index] = {
+        ...updatedDescriptions[index],
+        [field]: value,
+      }
+      values.domainClassDescriptions = updatedDescriptions
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'ADD_FIELD': {
+      const classIndex = get(action, 'payload.classIndex')
+      const values = { ...get(state, 'values') }
+      const updatedDescriptions = [
+        ...get(values, 'domainClassDescriptions', []),
+      ]
+      const newField = { fieldName: '', classType: 'java.lang.String' }
+      updatedDescriptions[classIndex] = {
+        ...updatedDescriptions[classIndex],
+        fields: [...updatedDescriptions[classIndex].fields, newField],
+      }
+      values.domainClassDescriptions = updatedDescriptions
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'REMOVE_FIELD': {
+      const { classIndex, fieldIndex } = get(action, 'payload')
+      const values = { ...get(state, 'values') }
+      const updatedDescriptions = [
+        ...get(values, 'domainClassDescriptions', []),
+      ]
+      updatedDescriptions[classIndex] = {
+        ...updatedDescriptions[classIndex],
+        fields: updatedDescriptions[classIndex].fields.filter(
+          (_, i) => i !== fieldIndex
+        ),
+      }
+      values.domainClassDescriptions = updatedDescriptions
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'UPDATE_FIELD': {
+      const { classIndex, fieldIndex, field, value } = get(action, 'payload')
+      const values = { ...get(state, 'values') }
+      const updatedDescriptions = [
+        ...get(values, 'domainClassDescriptions', []),
+      ]
+      updatedDescriptions[classIndex] = {
+        ...updatedDescriptions[classIndex],
+        fields: updatedDescriptions[classIndex].fields.map((f, i) =>
+          i === fieldIndex ? { ...f, [field]: value } : f
+        ),
+      }
+      values.domainClassDescriptions = updatedDescriptions
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'TOGGLE_LOMBOK': {
+      const useLombok = get(action, 'payload.useLombok')
+      const values = { ...get(state, 'values') }
+
+      // Update all domain classes
+      const updatedDescriptions = get(
+        values,
+        'domainClassDescriptions',
+        []
+      ).map(desc => {
+        if (useLombok) {
+          return { ...desc, useLombok: true }
+        }
+        const { useLombok: _, ...rest } = desc
+        return rest
+      })
+
+      // Update dependencies
+      let updatedDependencies = Array.isArray(values.dependencies)
+        ? [...values.dependencies]
+        : []
+      const lombokId = 'lombok' // Use the correct dependency ID format
+      if (useLombok) {
+        if (!updatedDependencies.includes(lombokId)) {
+          updatedDependencies.push(lombokId)
+        }
+      } else {
+        updatedDependencies = updatedDependencies.filter(
+          dep => dep !== lombokId
+        )
+      }
+
+      values.domainClassDescriptions = updatedDescriptions
+      values.dependencies = updatedDependencies
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'TOGGLE_REST_CONTROLLER': {
+      const { index, value } = get(action, 'payload')
+      const values = { ...get(state, 'values') }
+
+      // Update the specific domain class
+      const updatedDescriptions = [
+        ...get(values, 'domainClassDescriptions', []),
+      ]
+      updatedDescriptions[index] = {
+        ...updatedDescriptions[index],
+        generateRestController: value,
+      }
+
+      // Manage Spring Web dependency
+      let updatedDependencies = [...get(values, 'dependencies', [])]
+      const webId = 'web'
+
+      // Check if any domain class has REST controller enabled
+      const hasRestController = updatedDescriptions.some(
+        desc => desc.generateRestController
+      )
+
+      if (hasRestController) {
+        // Add web dependency if not already present
+        if (!updatedDependencies.includes(webId)) {
+          updatedDependencies.push(webId)
+        }
+      } else {
+        // Remove web dependency if no REST controllers are enabled
+        updatedDependencies = updatedDependencies.filter(dep => dep !== webId)
+      }
+
+      values.domainClassDescriptions = updatedDescriptions
+      values.dependencies = updatedDependencies
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'TOGGLE_FRONTEND_CONTROLLER': {
+      const { index, value } = get(action, 'payload')
+      const values = { ...get(state, 'values') }
+
+      // Update the specific domain class
+      const updatedDescriptions = [
+        ...get(values, 'domainClassDescriptions', []),
+      ]
+      updatedDescriptions[index] = {
+        ...updatedDescriptions[index],
+        generateFrontendController: value,
+      }
+
+      // Manage Thymeleaf dependency
+      let updatedDependencies = [...get(values, 'dependencies', [])]
+      const thymeleafId = 'thymeleaf'
+
+      // Check if any domain class has Frontend controller enabled
+      const hasFrontendController = updatedDescriptions.some(
+        desc => desc.generateFrontendController
+      )
+
+      if (hasFrontendController) {
+        // Add thymeleaf dependency if not already present
+        if (!updatedDependencies.includes(thymeleafId)) {
+          updatedDependencies.push(thymeleafId)
+        }
+      } else {
+        // Remove thymeleaf dependency if no Frontend controllers are enabled
+        updatedDependencies = updatedDependencies.filter(
+          dep => dep !== thymeleafId
+        )
+      }
+
+      values.domainClassDescriptions = updatedDescriptions
+      values.dependencies = updatedDependencies
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'ADD_ASSOCIATION': {
+      const values = { ...get(state, 'values') }
+      const newAssociation = {
+        firstClassName: '',
+        secondClassName: '',
+        assotiationType: '',
+      }
+      values.associationDescriptions = [
+        ...get(values, 'associationDescriptions', []),
+        newAssociation,
+      ]
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'REMOVE_ASSOCIATION': {
+      const index = get(action, 'payload.index')
+      const values = { ...get(state, 'values') }
+      values.associationDescriptions = get(
+        values,
+        'associationDescriptions',
+        []
+      ).filter((_, i) => i !== index)
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'UPDATE_ASSOCIATION': {
+      const { index, field, value } = get(action, 'payload')
+      const values = { ...get(state, 'values') }
+      const updatedAssociations = [
+        ...get(values, 'associationDescriptions', []),
+      ]
+      updatedAssociations[index] = {
+        ...updatedAssociations[index],
+        [field]: value,
+      }
+      values.associationDescriptions = updatedAssociations
+      return { ...state, values, share: getShareUrl(values) }
+    }
+    case 'SELECT_DATABASE': {
+      const database = get(action, 'payload.database')
+      const values = { ...get(state, 'values') }
+
+      // Define all database dependency IDs
+      const databaseIds = [
+        'postgresql',
+        'mysql',
+        'oracle',
+        'h2',
+        'db2',
+        'derby',
+        'hsql',
+        'sqlserver',
+      ]
+      const jpaId = 'data-jpa'
+
+      // Remove existing database dependencies
+      let updatedDependencies = get(values, 'dependencies', []).filter(
+        dep => !databaseIds.includes(dep)
+      )
+
+      // Add new database dependency and JPA if a database is selected
+      if (database && database !== '') {
+        updatedDependencies.push(database)
+        // Add JPA dependency if not already present
+        if (!updatedDependencies.includes(jpaId)) {
+          updatedDependencies.push(jpaId)
+        }
+      } else {
+        // Remove JPA dependency when no database is selected
+        updatedDependencies = updatedDependencies.filter(dep => dep !== jpaId)
+      }
+
+      values.database = database
+      values.dependencies = updatedDependencies
+      return { ...state, values, share: getShareUrl(values) }
     }
     default:
       return state

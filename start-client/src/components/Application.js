@@ -55,7 +55,8 @@ export default function Application() {
 
   useEffect(() => {
     if (windowsUtils.origin) {
-      const url = `http://localhost:8000/metadata/client`
+      // const url = `http://localhost:8000/metadata/client`
+      const url = process.env.REACT_APP_API_URL
       getInfo(url).then(jsonConfig => {
         const response = getConfig(jsonConfig)
         dispatchInitializr({ type: 'COMPLETE', payload: { ...response } })

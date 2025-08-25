@@ -1,5 +1,8 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { BiLogoPostgresql } from 'react-icons/bi'
+import { DiMysql } from 'react-icons/di'
+import { SiOracle } from 'react-icons/si'
 
 function RadioInput({ handler, value, disabled, error, checked, text }) {
   const onClick = event => {

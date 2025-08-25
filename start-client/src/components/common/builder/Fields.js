@@ -44,7 +44,6 @@ function Fields({
         <div className='left'>
           <Warnings />
           <div className='col-sticky'>
-            {/* <div className='colset'> */}
             <div>
               <div className='left'>
                 <Control text='Project'>
@@ -156,6 +155,25 @@ function Fields({
                 options={get(config, 'lists.meta.java')}
                 onChange={value => {
                   update({ meta: { java: value } })
+                }}
+              />
+            </Control>
+            <Control text={'Database'}>
+              <FieldRadio
+                id='input-database'
+                value={get(values, 'database')}
+                text='Database'
+                options={[
+                  { key: '', text: 'None' },
+                  { key: 'postgresql', text: 'PostgreSQL' },
+                  { key: 'mysql', text: 'MySQL' },
+                  { key: 'oracle', text: 'Oracle' },
+                ]}
+                onChange={value => {
+                  dispatchInitializr({
+                    type: 'SELECT_DATABASE',
+                    payload: { database: value },
+                  })
                 }}
               />
             </Control>

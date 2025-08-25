@@ -1,100 +1,141 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { FieldInput } from './index'
 import get from 'lodash/get'
 import { InitializrContext } from '../../reducer/Initializr'
 import { Button } from '../form'
+import { BiTrash } from 'react-icons/bi'
 
 function AssociationDescriptionsForm() {
   const {
     values,
     dispatch: dispatchInitializr,
-    errors,
   } = useContext(InitializrContext)
-  const update = args => {
-    dispatchInitializr({ type: 'UPDATE', payload: args })
+
+  // Handler for updating association fields
+  const handleAssociationChange = (index, field, value) => {
+    dispatchInitializr({
+      type: 'UPDATE_ASSOCIATION',
+      payload: { index, field, value },
+    })
+  }
+
+  // Handler for removing association
+  const handleRemoveAssociation = index => {
+    dispatchInitializr({
+      type: 'REMOVE_ASSOCIATION',
+      payload: { index },
+    })
+  }
+
+  // Handler for adding association
+  const handleAddAssociation = () => {
+    dispatchInitializr({ type: 'ADD_ASSOCIATION' })
   }
 
   return (
     <div>
+      <hr />
       {get(values, 'associationDescriptions', []).map((association, index) => (
         <div key={`association-${index}`}>
           <div>
             <div
-              key={index}
               style={{
-                display: 'flex',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr 1fr auto',
                 alignItems: 'center',
+                columnGap: '20px',
+                rowGap: '8px',
                 marginBottom: '10px',
+                padding: '4px 0',
               }}
             >
-              <FieldInput
-                id={`input-fieldName-${index}`}
+              {/* First class select */}
+              <select
+                id={`select-firstClassName-${index}`}
                 value={association.firstClassName || ''}
-                text=''
-                onChange={event => {
-                  const updatedDescriptions = [
-                    ...get(values, 'associationDescriptions', []),
-                  ]
-                  updatedDescriptions[index].firstClassName = event.target.value
-                  update({ associationDescriptions: updatedDescriptions })
-                }}
-              />
+                style={{ width: '100%', minWidth: '160px', padding: '8px 12px' }}
+                onChange={event => handleAssociationChange(index, 'firstClassName', event.target.value)}
+              >
+                <option value="">Select class</option>
+                {get(values, 'domainClassDescriptions', []).map((desc, i) => (
+                  <option key={i} value={desc.className}>
+                    {desc.className}
+                  </option>
+                ))}
+              </select>
+
+              {/* Association type select */}
               <select
                 name={`fieldType-${index}`}
-                style={{ marginLeft: '10px' }}
-                onChange={event => {
-                  const updatedDescriptions = [
-                    ...get(values, 'associationDescriptions', []),
-                  ]
-                  updatedDescriptions[index].assotiationType =
-                    event.target.value
-                  update({ associationDescriptions: updatedDescriptions })
-                }}
+                style={{ width: '100%', minWidth: '160px', padding: '8px 12px' }}
+                value={association.assotiationType || ''}
+                onChange={event => handleAssociationChange(index, 'assotiationType', event.target.value)}
               >
-                <option selected></option>
-                <option value='ONE_TO_ONE'>One to One</option>
-                <option value='ONE_TO_MANY'>One to Many</option>
-                <option value='MANY_TO_ONE'>Many to One</option>
-                <option value='MANY_TO_MANY'>Many to One</option>
+                <option value="">Select type</option>
+                <option value="ONE_TO_ONE">One to One</option>
+                <option value="ONE_TO_MANY">One to Many</option>
+                <option value="MANY_TO_ONE">Many to One</option>
+                <option value="MANY_TO_MANY">Many to Many</option>
               </select>
-              <FieldInput
-                id={`input-fieldName-${index}`}
+
+              {/* Second class select */}
+              <select
+                id={`select-secondClassName-${index}`}
                 value={association.secondClassName || ''}
-                text=''
-                onChange={event => {
-                  const updatedDescriptions = [
-                    ...get(values, 'associationDescriptions', []),
-                  ]
-                  updatedDescriptions[index].secondClassName =
-                    event.target.value
-                  update({ associationDescriptions: updatedDescriptions })
+                style={{ width: '100%', minWidth: '160px', padding: '8px 12px' }}
+                onChange={event => handleAssociationChange(index, 'secondClassName', event.target.value)}
+              >
+                <option value="">Select class</option>
+                {get(values, 'domainClassDescriptions', []).map((desc, i) => (
+                  <option key={i} value={desc.className}>
+                    {desc.className}
+                  </option>
+                ))}
+              </select>
+
+              {/* Remove button */}
+              <Button
+                type="button"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: '40px',
+                  width: '40px',
+                  padding: 0,
                 }}
-              />
+                onClick={() => handleRemoveAssociation(index)}
+                title="Remove Association"
+              >
+                <BiTrash style={{ fontSize: '20px' }} />
+              </Button>
             </div>
           </div>
         </div>
       ))}
-      <Button
-        id={'add-association'}
-        variant={'primary'}
-        onClick={event => {
-          const updatedDescriptions = [
-            ...get(values, 'associationDescriptions', []),
-            {
-              firstClassName: '',
-              associationType: '',
-              secondClassName: '',
-            },
-          ]
-          update({ associationDescriptions: updatedDescriptions })
+
+      {/* Add association button */}
+      <div
+        style={{
+          marginTop: '32px',
+          display: 'flex',
+          justifyContent: 'flex-end',
         }}
       >
-        <span style={{ display: 'flex', alignItems: 'center' }}>
-          <i className={'bi bi-plus-circle'} style={{ paddingRight: '10px' }} />
-          <i className={'bi bi-arrows'} style={{ paddingRight: '10px' }} />
-          Add association
-        </span>
-      </Button>
+        <Button
+          id="add-association"
+          variant="primary"
+          onClick={handleAddAssociation}
+        >
+          <span style={{ display: 'flex', alignItems: 'center' }}>
+            <i
+              className="bi bi-plus-circle"
+              style={{ paddingRight: '10px' }}
+            />
+            New Association
+          </span>
+        </Button>
+      </div>
     </div>
   )
 }

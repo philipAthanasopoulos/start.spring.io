@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 const isDev = process.env.NODE_ENV === 'development'
 const CopyPlugin = require('copy-webpack-plugin')
+const Dotenv = require('dotenv-webpack');
 
 const CODE = `<script defer src="https://www.googletagmanager.com/gtag/js?id={{ID}}"></script><script>window.dataLayer=window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date()); gtag('config', '{{ID}}');</script>`
 
@@ -70,6 +71,7 @@ const config = {
     fallback: { querystring: require.resolve('querystring-es3') },
   },
   plugins: [
+    new Dotenv(),
     new CopyPlugin({
       patterns: [
         {
