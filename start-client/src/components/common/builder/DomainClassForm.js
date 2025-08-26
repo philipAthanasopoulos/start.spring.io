@@ -125,25 +125,26 @@ function DomainClassForm() {
               text='Name'
               onChange={event => handleClassNameChange(event, index)}
             />
-            <a
-              href='/'
-              onClick={event => {
-                event.preventDefault()
-                handleRemoveEntity(index)
-              }}
-              key={`remove-entity-${index}`}
-              className='icon'
+            <Button
+              variant='danger'
+              onClick={() => handleRemoveEntity(index)}
               style={{
                 marginLeft: '10px',
                 display: 'flex',
                 alignItems: 'center',
+                padding: '4px 8px',
+                background: 'none',
+                border: 'none',
+                color: 'red',
+                cursor: 'pointer',
               }}
               title='Remove Entity'
+              aria-label='Remove Entity'
             >
-              <span className='a-content' tabIndex='-1'>
-                <IconRemove />
+              <span style={{ display: 'flex', alignItems: 'center' }}>
+                <i className='bi bi-trash' />
               </span>
-            </a>
+            </Button>
           </div>
           <div>
             {description.fields.map((field, fieldIndex) => (
