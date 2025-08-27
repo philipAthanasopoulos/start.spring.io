@@ -430,11 +430,9 @@ export function reducer(state, action) {
       const databaseIds = [
         'postgresql',
         'mysql',
+        'mariadb',
         'oracle',
-        'h2',
         'db2',
-        'derby',
-        'hsql',
         'sqlserver',
       ]
       const jpaId = 'data-jpa'

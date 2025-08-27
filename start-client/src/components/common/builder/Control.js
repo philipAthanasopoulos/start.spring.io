@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-function Control({ text, children, labelFor }) {
+function Control({ text, icon, children, labelFor }) {
   return (
     <div className='control'>
       <label className='label' htmlFor={labelFor}>
-        {text}
+        {icon} {text}
       </label>
       <div className='control-element'>{children}</div>
     </div>

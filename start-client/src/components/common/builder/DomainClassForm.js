@@ -5,6 +5,7 @@ import { InitializrContext } from '../../reducer/Initializr'
 import { Button } from '../form'
 import { IconRemove } from '../icons'
 import options from './typeOptions.json'
+import { GiBellPepper, GiChiliPepper } from 'react-icons/gi'
 
 function DomainClassForm() {
   const {
@@ -194,7 +195,7 @@ function DomainClassForm() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'red',
+                    color: 'white',
                   }}
                   title='Remove Field'
                 >
@@ -257,6 +258,7 @@ function DomainClassForm() {
           checked={useLombok}
           onChange={handleToggleLombok}
         />
+
         <label htmlFor='use-lombok-checkbox'>Use Lombok</label>
       </div>
       {/* Add domain class button */}

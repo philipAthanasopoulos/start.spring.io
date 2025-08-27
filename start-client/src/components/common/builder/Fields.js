@@ -17,6 +17,10 @@ import Checkbox from '../form/Checkbox'
 import CheckboxInput from '../form/Checkbox'
 import DomainClassForm from './DomainClassForm'
 import AssociationDescriptionsForm from './AssociationDescriptionsForm'
+import { AiFillDatabase } from 'react-icons/ai'
+import { FaArrowsTurnToDots, FaDatabase, FaShapes } from 'react-icons/fa6'
+import { LuShapes } from 'react-icons/lu'
+import { TbArrowLeftRhombus, TbArrowsRightLeft } from 'react-icons/tb'
 
 function Fields({
   onSubmit,
@@ -158,16 +162,18 @@ function Fields({
                 }}
               />
             </Control>
-            <Control text={'Database'}>
+            <Control text={'Database'} icon = {<FaDatabase />}>
               <FieldRadio
                 id='input-database'
                 value={get(values, 'database')}
-                text='Database'
                 options={[
                   { key: '', text: 'None' },
                   { key: 'postgresql', text: 'PostgreSQL' },
                   { key: 'mysql', text: 'MySQL' },
+                  { key: 'mariadb', text: 'MariaDB' },
                   { key: 'oracle', text: 'Oracle' },
+                  { key: 'db2', text: 'DB2' },
+                  { key: 'sqlserver', text: 'SQL Server' },
                 ]}
                 onChange={value => {
                   dispatchInitializr({
@@ -177,10 +183,10 @@ function Fields({
                 }}
               />
             </Control>
-            <Control text='Entities'>
+            <Control text='Entities' icon={<FaShapes/>}>
               <DomainClassForm />
             </Control>
-            <Control text='Associations'>
+            <Control text='Associations' icon={<FaArrowsTurnToDots/>}>
               <AssociationDescriptionsForm />
             </Control>
           </div>
