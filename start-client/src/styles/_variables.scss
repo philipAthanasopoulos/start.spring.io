@@ -1,23 +1,23 @@
 // Theme Light
 
 $light-background: #fff;
-$light-background-seconday: #ecf2f2;
-$light-color: #000;
-$light-border: #dce8e8;
-$light-primary: #6db33f;
-$light-link: #086dc3;
-$light-placeholder: lighten($light-border, 5);
+$light-background-seconday: #fff;
+$light-color: #0f172a;
+$light-border: #c0c0c0;
+$light-primary: #6366f1;
+$light-link: #a855f7;
+$light-placeholder: #c0c0c0;
 $light-outline: darken($light-border, 15);
 
 // Theme Dark
 
-$dark-background: #1b1f23;
-$dark-background-secondary: #262a2d;
+$dark-background: #0f172a; // deep navy / almost black (cosmic background feel)
+$dark-background-secondary: #0f172a; // vivid indigo, evokes nebula light
 $dark-color: #fff;
-$dark-border: #4a5053;
-$dark-primary: #6db33f;
-$dark-link: #086dc3;
-$dark-placeholder: #262a2d;
+$dark-border: #c0c0c0; // silver
+$dark-primary: #6366f1; // vivid indigo
+$dark-link: #a855f7; // electric violet, galactic vibe
+$dark-placeholder: #c0c0c0; // silver
 
 // Global
 
