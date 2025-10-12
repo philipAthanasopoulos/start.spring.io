@@ -3,6 +3,7 @@ import React, { useContext } from 'react'
 import LogoMobile from './LogoMobile'
 import { AppContext } from '../../reducer/App'
 import { IconMoon, IconSun } from '../icons'
+import Logo from './Logo'
 
 function HeaderMobile() {
   const { nav, theme, dispatch } = useContext(AppContext)
@@ -11,7 +12,7 @@ function HeaderMobile() {
       <h1 className='logo logo-mobile'>
         <a href='/'>
           <span className='logo-content' tabIndex='-1'>
-            <LogoMobile />
+            <Logo />
           </span>
         </a>
       </h1>

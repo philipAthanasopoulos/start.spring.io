@@ -144,6 +144,7 @@ body {
   h1,
   h2 {
     margin: 0;
+    color: $dark-primary;text-underline: none;
   }
   h1.logo {
     max-width: 320px;
@@ -153,12 +154,15 @@ body {
       display: block;
       margin-left: -6px;
       color: $light-color;
+      text-decoration-line: none;
       @include outline;
       .logo-content {
-        display: block;
+        display: flex;
+        flex-direction: row;
         outline: none;
         box-shadow: none;
         padding: 6px;
+        align-items: center;
       }
       svg {
         display: block;
@@ -1397,3 +1401,5 @@ option {
     color: white;
   }
 }
+
+
