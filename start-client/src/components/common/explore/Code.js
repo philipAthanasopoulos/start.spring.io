@@ -13,6 +13,7 @@ if (typeof global !== 'undefined') {
   require('prismjs/components/prism-groovy') // eslint-disable-line
   require('prismjs/components/prism-git') // eslint-disable-line
   require('prismjs/components/prism-markup') // eslint-disable-line
+  require('prismjs/themes/prism-funky.min.css') // eslint-disable-line
 }
 
 function Code({ item }) {
@@ -26,7 +27,8 @@ function Code({ item }) {
     )
   }
   return (
-    <Highlight Prism={Prism} code={code} language={language} theme={null}>
+    // eslint-disable-next-line no-undef
+    <Highlight Prism={Prism} code={code} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => {
         let groupLine = tokens.length > 9 ? '2' : '1'
         groupLine = tokens.length > 99 ? '3' : groupLine

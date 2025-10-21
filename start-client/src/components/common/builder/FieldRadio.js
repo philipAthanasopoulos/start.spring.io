@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes, { any } from 'prop-types'
 import React from 'react'
 
 import { Radio } from '../form'
@@ -33,6 +33,7 @@ FieldRadio.propTypes = {
     PropTypes.shape({
       key: PropTypes.string,
       text: PropTypes.string,
+      icon: PropTypes.node,
     })
   ),
 }

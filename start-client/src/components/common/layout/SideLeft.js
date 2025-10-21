@@ -82,7 +82,7 @@ function SideLeft() {
             <a
               rel='noreferrer noopener'
               target='_blank'
-              href='https://github.com/spring-io/start.spring.io'
+              href='https://github.com/philipAthanasopoulos/start.spring.io'
             >
               <span className='a-content' tabIndex='-1'>
                 <IconGithub />
@@ -105,103 +105,103 @@ function SideLeft() {
               <div className='navigation-content'>
                 <div className='navigation-content-wrap'>
                   <Header />
-                  <div>
-                    <ul>
-                      <li>
-                        <a
-                          id='ql-help-projects'
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          href='https://spring.io/projects'
-                        >
-                          Discover all the Spring projects
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          id='ql-help-guides'
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          href='https://spring.io/guides'
-                        >
-                          Discover all the Spring guides
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          id='ql-help-spring-blog'
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          href='https://spring.io/blog'
-                        >
-                          What&apos;s new with Spring
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          id='ql-help-migration'
-                          target='_blank'
-                          rel='noopener noreferrer'
-                          href='https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide'
-                        >
-                          Migrate Spring Boot 2.7 to 3.0
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className='is-mobile'>
-                    <ul>
-                      <li>
-                        <a
-                          rel='noreferrer noopener'
-                          target='_blank'
-                          href='https://github.com/spring-io/start.spring.io'
-                        >
-                          <span className='a-content' tabIndex='-1'>
-                            Github
-                          </span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className='copyright'>
-                    © 2005-{new Date().getFullYear()} Broadcom. All Rights
-                    Reserved.
-                    <br />
-                    The term &quot;Broadcom&quot; refers to Broadcom Inc. and/or
-                    its subsidiaries
-                    <br />
-                    start.spring.io is powered by{' '}
-                    <span>
-                      <a
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        href='https://github.com/spring-io/initializr/'
-                      >
-                        Spring Initializr
-                      </a>
-                    </span>
-                    <span>,</span>{' '}
-                    <span>
-                      <a
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        href='https://buildpacks.io/'
-                      >
-                        Cloud Native Buildpacks
-                      </a>
-                    </span>{' '}
-                    <span>and</span>{' '}
-                    <span>
-                      <a
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        href='https://azure.microsoft.com/en-us/products/spring-apps'
-                      >
-                        Azure Spring Apps
-                      </a>
-                    </span>
-                  </div>
+                  {/* <div> */}
+                  {/*   <ul> */}
+                  {/*     <li> */}
+                  {/*       <a */}
+                  {/*         id='ql-help-projects' */}
+                  {/*         target='_blank' */}
+                  {/*         rel='noopener noreferrer' */}
+                  {/*         href='https://spring.io/projects' */}
+                  {/*       > */}
+                  {/*         Discover all the Spring projects */}
+                  {/*       </a> */}
+                  {/*     </li> */}
+                  {/*     <li> */}
+                  {/*       <a */}
+                  {/*         id='ql-help-guides' */}
+                  {/*         target='_blank' */}
+                  {/*         rel='noopener noreferrer' */}
+                  {/*         href='https://spring.io/guides' */}
+                  {/*       > */}
+                  {/*         Discover all the Spring guides */}
+                  {/*       </a> */}
+                  {/*     </li> */}
+                  {/*     <li> */}
+                  {/*       <a */}
+                  {/*         id='ql-help-spring-blog' */}
+                  {/*         target='_blank' */}
+                  {/*         rel='noopener noreferrer' */}
+                  {/*         href='https://spring.io/blog' */}
+                  {/*       > */}
+                  {/*         What&apos;s new with Spring */}
+                  {/*       </a> */}
+                  {/*     </li> */}
+                  {/*     <li> */}
+                  {/*       <a */}
+                  {/*         id='ql-help-migration' */}
+                  {/*         target='_blank' */}
+                  {/*         rel='noopener noreferrer' */}
+                  {/*         href='https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide' */}
+                  {/*       > */}
+                  {/*         Migrate Spring Boot 2.7 to 3.0 */}
+                  {/*       </a> */}
+                  {/*     </li> */}
+                  {/*   </ul> */}
+                  {/* </div> */}
+                  {/* <div className='is-mobile'> */}
+                  {/*   <ul> */}
+                  {/*     <li> */}
+                  {/*       <a */}
+                  {/*         rel='noreferrer noopener' */}
+                  {/*         target='_blank' */}
+                  {/*         href='https://github.com/spring-io/start.spring.io' */}
+                  {/*       > */}
+                  {/*         <span className='a-content' tabIndex='-1'> */}
+                  {/*           Github */}
+                  {/*         </span> */}
+                  {/*       </a> */}
+                  {/*     </li> */}
+                  {/*   </ul> */}
+                  {/* </div> */}
+                  {/* <div className='copyright'> */}
+                  {/*   © 2005-{new Date().getFullYear()} Broadcom. All Rights */}
+                  {/*   Reserved. */}
+                  {/*   <br /> */}
+                  {/*   The term &quot;Broadcom&quot; refers to Broadcom Inc. and/or */}
+                  {/*   its subsidiaries */}
+                  {/*   <br /> */}
+                  {/*   start.spring.io is powered by{' '} */}
+                  {/*   <span> */}
+                  {/*     <a */}
+                  {/*       target='_blank' */}
+                  {/*       rel='noopener noreferrer' */}
+                  {/*       href='https://github.com/spring-io/initializr/' */}
+                  {/*     > */}
+                  {/*       Spring Initializr */}
+                  {/*     </a> */}
+                  {/*   </span> */}
+                  {/*   <span>,</span>{' '} */}
+                  {/*   <span> */}
+                  {/*     <a */}
+                  {/*       target='_blank' */}
+                  {/*       rel='noopener noreferrer' */}
+                  {/*       href='https://buildpacks.io/' */}
+                  {/*     > */}
+                  {/*       Cloud Native Buildpacks */}
+                  {/*     </a> */}
+                  {/*   </span>{' '} */}
+                  {/*   <span>and</span>{' '} */}
+                  {/*   <span> */}
+                  {/*     <a */}
+                  {/*       target='_blank' */}
+                  {/*       rel='noopener noreferrer' */}
+                  {/*       href='https://azure.microsoft.com/en-us/products/spring-apps' */}
+                  {/*     > */}
+                  {/*       Azure Spring Apps */}
+                  {/*     </a> */}
+                  {/*   </span> */}
+                  {/* </div> */}
                 </div>
               </div>
             </div>

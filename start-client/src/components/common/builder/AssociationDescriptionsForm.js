@@ -34,7 +34,7 @@ function AssociationDescriptionsForm() {
 
   return (
     <div>
-      <hr />
+      <hr/>
       {get(values, 'associationDescriptions', []).map((association, index) => (
         <div key={`association-${index}`}>
           <div>

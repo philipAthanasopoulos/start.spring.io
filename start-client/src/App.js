@@ -15,11 +15,11 @@ render(
     <InitializrProvider>
       <ToastContainer
         closeButton={<Close />}
-        position="top-center"
+        position='top-center'
         hideProgressBar
       />
       <Application />
     </InitializrProvider>
   </AppProvider>,
-  document.getElementById('app'),
+  document.getElementById('app')
 )

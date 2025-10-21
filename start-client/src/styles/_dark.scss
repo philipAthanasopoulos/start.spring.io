@@ -56,7 +56,7 @@ body.dark {
     }
   }
   .actions .actions-container {
-    background: $dark-background-secondary;
+    background: linear-gradient(to left, $dark-background-secondary 0%, rgba(28, 92, 62, 0.73) 50%, $dark-background-secondary 100%);
   }
   #side-left a {
     color: $dark-color;
@@ -453,8 +453,8 @@ option {
 .input-checkbox {
   background: $dark-background;
   border: 2px solid $dark-color;
-  color: $dark-color;
-  border-radius: 4px;
+  color: $light-color;
+  border-radius: 20px;
   width: 1.4em;
   height: 1.4em;
   appearance: none;
@@ -477,7 +477,7 @@ option {
       top: 0.1em;
       width: 0.3em;
       height: 0.6em;
-      border: solid white;
+      border: solid $light-color;
       border-width: 0 0.18em 0.18em 0;
       transform: rotate(45deg);
     }

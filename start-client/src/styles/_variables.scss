@@ -11,8 +11,8 @@ $light-outline: darken($light-border, 15);
 
 // Theme Dark
 
-$dark-background: #030f0f;
-$dark-background-secondary: #0b1e1e;
+$dark-background: #1E2420;
+$dark-background-secondary: #1E2420;
 $dark-color: #fff;
 $dark-border: #4a5053;
 $dark-primary: #00DF82;
@@ -20,11 +20,10 @@ $dark-link: #086dc3;
 $dark-placeholder: #00DF82;
 
 // Global
-
 $spring-8points: 8px;
 $spring-font-size: 15px;
 $spring-font-size-sm: 14px;
+// Primary font - change as needed
 $spring-font-family: 'Metropolis', Arial, sans-serif;
-$spring-radius: 4px;
 $spring-transition-duration: 0.15s;
 $spring-max-width: 1680px;

@@ -20,6 +20,9 @@ import { Header, SideLeft, SideRight } from './common/layout'
 import { InitializrContext } from './reducer/Initializr'
 import { getConfig, getInfo, getProject } from './utils/ApiUtils'
 import { Form } from './common/form'
+import Diagram from './common/UmlGraph/Diagram'
+import { TbTool } from 'react-icons/tb'
+import { AiOutlineExperiment, AiTwotoneExperiment } from 'react-icons/ai'
 
 const Explore = lazy(() => import('./common/explore/Explore'))
 const Share = lazy(() => import('./common/share/Share'))
@@ -145,7 +148,7 @@ export default function Application() {
           onEscape={onEscape}
         />
       </Suspense>
-      <SideLeft />
+      {/* <SideLeft /> */}
       <div id='main'>
         <Header />
         <hr className='divider' />
@@ -157,6 +160,7 @@ export default function Application() {
               <Fields
                 onSubmit={onSubmit}
                 onShare={onShare}
+                s
                 onExplore={onExplore}
                 refExplore={buttonExplore}
                 refSubmit={buttonSubmit}
@@ -164,11 +168,17 @@ export default function Application() {
                 generating={generating}
               />
               <DependencyDialog onClose={onEscape} />
+              <h2>
+                Class Diagram (<AiOutlineExperiment />
+                Experimental)
+              </h2>
+              <hr />
+              <Diagram />
             </>
           )}
         </Form>
       </div>
-      <SideRight />
+      {/* <SideRight /> */}
       <Suspense fallback=''>
         <Share open={shareOpen || false} shareUrl={share} onClose={onEscape} />
         <Explore

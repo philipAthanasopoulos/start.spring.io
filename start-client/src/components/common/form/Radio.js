@@ -4,7 +4,7 @@ import { BiLogoPostgresql } from 'react-icons/bi'
 import { DiMysql } from 'react-icons/di'
 import { SiOracle } from 'react-icons/si'
 
-function RadioInput({ handler, value, disabled, error, checked, text }) {
+function RadioInput({ handler, value, disabled, error, checked, text, icon }) {
   const onClick = event => {
     event.preventDefault()
     handler(value)
@@ -31,7 +31,8 @@ function RadioInput({ handler, value, disabled, error, checked, text }) {
     >
       <span className='caret' tabIndex='-1' />
       <span className='radio-content' tabIndex='-1'>
-        {text}
+        <span>{text}</span>
+        <span>{icon}</span>
       </span>
     </a>
   )
@@ -49,6 +50,8 @@ RadioInput.propTypes = {
   handler: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   error: PropTypes.bool,
+  // eslint-disable-next-line react/require-default-props
+  icon: PropTypes.string,
 }
 
 function Radio({ onChange, options, error, selected, disabled }) {
@@ -64,6 +67,7 @@ function Radio({ onChange, options, error, selected, disabled }) {
         checked={!error && selected === option.key}
         text={option.text}
         value={option.key}
+        icon={option.icon}
         disabled={disabled}
         handler={onChangeHandler}
       />

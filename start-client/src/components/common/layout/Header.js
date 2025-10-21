@@ -2,6 +2,7 @@ import React from 'react'
 
 import HeaderMobile from './HeaderMobile'
 import Logo from './Logo'
+import SideRight from './SideRight'
 
 function Header() {
   return (

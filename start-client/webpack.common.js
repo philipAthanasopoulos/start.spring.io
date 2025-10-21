@@ -42,6 +42,10 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /.(js|jsx)$/,
         exclude: [path.resolve(__dirname, 'node_modules')],
         loader: 'babel-loader',
@@ -54,7 +58,7 @@ const config = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot|svg|png|jpg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader',
@@ -90,18 +94,18 @@ const config = {
             minifyCSS: true,
           },
       template: './static/index.html',
-      title: 'Spring Initializr',
-      description: `Initializr generates spring boot project with just what you need to start quickly!`,
-      url: 'https://start.spring.io',
-      twitter: '@springboot',
+      title: 'Bootcrane',
+      description: `Bootcrane scaffolds Spring Boot projects. REST, ORM and Thymeleaf OUT OF THE BOX!`,
+      url: 'https://bootcrane.dev',
+      // twitter: '@springboot',
       image: `https://start.spring.io/images/initializr-card.jpg`,
       theme: `#6db33f`,
     }),
     new WebpackGoogleTagManager(process.env.GOOGLE_TAGMANAGER_ID),
     new WebpackPwaManifest({
-      name: 'spring-initializr',
-      short_name: 'Start',
-      description: `Initializr generates spring boot project with just what you need to start quickly!`,
+      name: 'bootcrane',
+      short_name: 'Boot',
+      description: `Bootcrane scaffolds Spring Boot projects. REST, ORM and Thymeleaf OUT OF THE BOX!`,
       background_color: '#6db33f',
       inject: true,
       fingerprints: true,

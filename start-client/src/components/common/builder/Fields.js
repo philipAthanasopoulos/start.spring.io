@@ -13,14 +13,15 @@ import { AppContext } from '../../reducer/App'
 import { Button, Radio } from '../form'
 import { Dependency } from '../dependency'
 import { InitializrContext } from '../../reducer/Initializr'
-import Checkbox from '../form/Checkbox'
-import CheckboxInput from '../form/Checkbox'
 import DomainClassForm from './DomainClassForm'
 import AssociationDescriptionsForm from './AssociationDescriptionsForm'
-import { AiFillDatabase } from 'react-icons/ai'
 import { FaArrowsTurnToDots, FaDatabase, FaShapes } from 'react-icons/fa6'
-import { LuShapes } from 'react-icons/lu'
-import { TbArrowLeftRhombus, TbArrowsRightLeft } from 'react-icons/tb'
+import oracle from '../../../../static/images/oracle.png'
+import { DiPostgresql } from 'react-icons/di'
+import { SiMariadb, SiMysql, SiOracle, SiPostgresql } from 'react-icons/si'
+import { BsMicrosoft } from 'react-icons/bs'
+import { GrMysql } from 'react-icons/gr'
+import Diagram from '../UmlGraph/Diagram'
 
 function Fields({
   onSubmit,
@@ -41,6 +42,28 @@ function Fields({
   const update = args => {
     dispatchInitializr({ type: 'UPDATE', payload: args })
   }
+  const chart = `
+  classDiagram
+    Animal : +int age
+        Animal : +String gender
+        Animal: +isMammal()
+        Animal: +mate()
+        Tiger : +String stripePattern
+        Tiger : +hunt()
+        Elephant : +int trunkLength
+        Elephant : +sprayWater()
+        Giraffe : +int neckLength
+        Giraffe : +eatLeaves()
+        Wolf : +bool isPackLeader
+        Wolf : +howl()
+        Fox : +String tailType
+        Fox : +hide()
+        Deer : +int antlerSize
+        Deer : +runFast()
+        Rabbit : +bool isWild
+        Rabbit : +hop()
+        Deer <-- Rabbit
+  `
 
   return (
     <>
@@ -109,7 +132,6 @@ function Fields({
                   update({ meta: { group: event.target.value } })
                 }}
               />
-
               <FieldInput
                 id='input-artifact'
                 value={get(values, 'meta.artifact')}
@@ -162,18 +184,34 @@ function Fields({
                 }}
               />
             </Control>
-            <Control text={'Database'} icon = {<FaDatabase />}>
+            <Control text={'Database'} icon={<FaDatabase />}>
+              <hr />
               <FieldRadio
                 id='input-database'
                 value={get(values, 'database')}
                 options={[
                   { key: '', text: 'None' },
-                  { key: 'postgresql', text: 'PostgreSQL' },
-                  { key: 'mysql', text: 'MySQL' },
-                  { key: 'mariadb', text: 'MariaDB' },
-                  { key: 'oracle', text: 'Oracle' },
-                  { key: 'db2', text: 'DB2' },
-                  { key: 'sqlserver', text: 'SQL Server' },
+                  {
+                    key: 'postgresql',
+                    text: 'PostgreSQL',
+                    icon: SiPostgresql({ size: 20 }),
+                  },
+                  { key: 'mysql', text: 'MySQL', icon: GrMysql({ size: 20 }) },
+                  {
+                    key: 'mariadb',
+                    text: 'MariaDB',
+                    icon: SiMariadb({ size: 20 }),
+                  },
+                  {
+                    key: 'oracle',
+                    text: 'Oracle',
+                    icon: SiOracle({ size: 20 }),
+                  },
+                  {
+                    key: 'sqlserver',
+                    text: 'SQL Server',
+                    icon: BsMicrosoft({ size: 20 }),
+                  },
                 ]}
                 onChange={value => {
                   dispatchInitializr({
@@ -183,10 +221,10 @@ function Fields({
                 }}
               />
             </Control>
-            <Control text='Entities' icon={<FaShapes/>}>
+            <Control text='Entities' icon={<FaShapes />}>
               <DomainClassForm />
             </Control>
-            <Control text='Associations' icon={<FaArrowsTurnToDots/>}>
+            <Control text='Associations' icon={<FaArrowsTurnToDots />}>
               <AssociationDescriptionsForm />
             </Control>
           </div>

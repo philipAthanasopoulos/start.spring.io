@@ -3,9 +3,7 @@ import { FieldInput } from './index'
 import get from 'lodash/get'
 import { InitializrContext } from '../../reducer/Initializr'
 import { Button } from '../form'
-import { IconRemove } from '../icons'
 import options from './typeOptions.json'
-import { GiBellPepper, GiChiliPepper } from 'react-icons/gi'
 
 function DomainClassForm() {
   const {
@@ -109,7 +107,7 @@ function DomainClassForm() {
 
   return (
     <div>
-      <hr />
+      <hr/>
       {get(values, 'domainClassDescriptions', []).map((description, index) => (
         <div key={`description-${index}`}>
           {index > 0 && <hr />}
@@ -231,7 +229,7 @@ function DomainClassForm() {
                 onChange={event => handleToggleRestController(event, index)}
               />
               <label htmlFor={`generateRestController-${index}`}>
-                Generate REST Controller
+                REST Controller
               </label>
             </div>
             <div>
@@ -243,24 +241,27 @@ function DomainClassForm() {
                 onChange={event => handleToggleFrontendController(event, index)}
               />
               <label htmlFor={`generateFrontendController-${index}`}>
-                Generate Frontend Controller
+                Web Controller
               </label>
             </div>
           </div>
         </div>
       ))}
-      {/* Single Use Lombok checkbox at the end */}
-      <div style={{ marginTop: '24px' }}>
-        <input
-          type='checkbox'
-          id='use-lombok-checkbox'
-          className='input-checkbox'
-          checked={useLombok}
-          onChange={handleToggleLombok}
-        />
+      {get(values, 'domainClassDescriptions', []).length > 0 && (
+        <div style={{ marginTop: '24px' }}>
+          <hr/>
+          <input
+            type='checkbox'
+            id='use-lombok-checkbox'
+            className='input-checkbox'
+            checked={useLombok}
+            onChange={handleToggleLombok}
+          />
+          <label htmlFor='use-lombok-checkbox'>Use Lombok</label>
+        </div>
+      )}
 
-        <label htmlFor='use-lombok-checkbox'>Use Lombok</label>
-      </div>
+      {/* Single Use Lombok checkbox at the end */}
       {/* Add domain class button */}
       <div
         style={{

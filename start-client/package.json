@@ -11,7 +11,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "webpack serve --progress --config webpack.dev.js",
-    "start:prod": "serve -s public -p 8080",
+    "start:prod": "serve -s public -p 8081",
     "build": "webpack --mode production --config webpack.prod.js",
     "test": "jest --reporters=jest-standard-reporter",
     "prettier": "prettier --write \"**/*.{{c,le,sc}ss,g?(raph)ql,htm?(l),js?(on|on5|onl|x|s),md?(x|wn),m?(ark)down,mkdn,ts?(x),vue,y?(a)ml}\"",
@@ -93,6 +93,7 @@
     "jszip": "^3.6.0",
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",
+    "mermaid": "^11.12.0",
     "plantuml-encoder": "^1.4.0",
     "plantuml-parser": "^0.4.0",
     "prism-react-renderer": "^1.2.0",
@@ -107,8 +108,11 @@
     "react-hotkeys": "^2.0.0",
     "react-icons": "^5.5.0",
     "react-markdown": "^8.0.3",
+    "react-mermaid2": "^0.1.4",
+    "react-plantuml": "^0.0.8",
     "react-toastify": "^9.0.4",
     "react-transition-group": "^4.4.1",
+    "react-x-mermaid": "^0.0.10",
     "serve": "^14.2.4"
   },
   "prettier": {
