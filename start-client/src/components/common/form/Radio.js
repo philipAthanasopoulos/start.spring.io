@@ -1,8 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { BiLogoPostgresql } from 'react-icons/bi'
-import { DiMysql } from 'react-icons/di'
-import { SiOracle } from 'react-icons/si'
 
 function RadioInput({ handler, value, disabled, error, checked, text, icon }) {
   const onClick = event => {
@@ -29,11 +26,11 @@ function RadioInput({ handler, value, disabled, error, checked, text, icon }) {
       className={`radio ${checked ? 'checked' : ''}`}
       onClick={onClick}
     >
-      <span className='caret' tabIndex='-1' />
-      <span className='radio-content' tabIndex='-1'>
+      <div className='caret' tabIndex='-1' />
+      <div className='radio-content' tabIndex='-1'>
         <span>{text}</span>
         <span>{icon}</span>
-      </span>
+      </div>
     </a>
   )
 }

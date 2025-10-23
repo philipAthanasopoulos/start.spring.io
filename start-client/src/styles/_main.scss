@@ -12,6 +12,7 @@ body {
   font-family: $spring-font-family;
   background-color: $light-background;
   margin: 0;
+  padding-top: 150px;
 }
 
 #app {
@@ -331,8 +332,18 @@ hr.divider {
   }
 }
 
+.control-element {
+  padding: 20px;
+}
+
+.control .input::placeholder {
+  color: $dark-placeholder;
+  opacity: 1; /* Firefox */
+}
+
 .control-inline {
   display: flex;
+  justify-content: left;
 
   label {
     white-space: nowrap;
@@ -349,7 +360,7 @@ hr.divider {
   }
 
   input {
-    color: $light-color;
+    color: $light-background;
     background: $light-background;
     max-width: 520px;
   }
@@ -363,43 +374,42 @@ hr.divider {
 // Radio
 
 .radio {
-  display: inline-block;
+  display: inline-flex;
   position: relative;
+  align-items: center;
   text-decoration: none;
   color: $light-color;
   margin-right: 1.5rem;
   margin-left: -5px;
   cursor: pointer;
   line-height: 18px;
+  padding-right: 10px;
+
 
   .radio-content {
     display: flex;
     flex-direction: row;
+    padding-left: 20px;
+    gap: 4px;
     align-items: center;
-    justify-items: center;
-    justify-content: center;
-    align-content: center;
-    padding: 6px;
-    padding-left: 30px;
-    gap: 6px;
   }
 
   @include outline;
 
   .caret {
     display: block;
-    content: ' ';
     width: 12px;
     height: 12px;
     background: $light-background;
     position: absolute;
-    top: 6px;
-    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
     border: 2px solid $light-color;
     box-shadow: none;
     outline: none;
-    border-radius: 20px;
+    border-radius: 50%;
   }
+
 
   &:hover {
     .caret {
@@ -481,7 +491,6 @@ button.button {
   border-radius: 20px;
   border: 2px solid $light-color;
   color: $light-color;
-  padding: 0;
   font-size: $spring-font-size - 1;
   text-decoration: none;
   text-transform: uppercase;
@@ -688,6 +697,7 @@ button.button {
 
 .form {
   position: relative;
+  padding-bottom: 100px;
 }
 
 .warnings {
@@ -1589,5 +1599,53 @@ option {
     color: white;
   }
 }
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px; /* height will follow content */
+  background: $navbar-color;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:5%;
+    align-content: center;
+    align-items: center;
+  }
+
+  li {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 10px;
+  }
+
+  a {
+    color: $dark-color;
+    text-decoration-line: none;
+    font-size: large;
+  }
+
+  a {
+    transition: color 200ms ease, text-decoration-color 200ms ease;
+    -webkit-transition: color 200ms ease, text-decoration-color 200ms ease;
+    text-decoration-color: transparent;
+  }
+
+  a:hover {
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
+  }
+}
+
+
 
 

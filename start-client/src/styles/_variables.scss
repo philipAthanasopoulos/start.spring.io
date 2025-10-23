@@ -4,20 +4,22 @@ $light-background: #fff;
 $light-background-seconday: #ecf2f2;
 $light-color: #000;
 $light-border: #dce8e8;
-$light-primary: #00DF82;
+$light-primary: #33ff66;
 $light-link: #086dc3;
 $light-placeholder: lighten($light-border, 5);
 $light-outline: darken($light-border, 15);
 
 // Theme Dark
 
-$dark-background: #1E2420;
-$dark-background-secondary: #1E2420;
+$dark-background: #0d2f2b;
+$dark-background-secondary: #0d2f2b;
 $dark-color: #fff;
 $dark-border: #4a5053;
-$dark-primary: #00DF82;
+$dark-primary: #33ff66;
 $dark-link: #086dc3;
-$dark-placeholder: #00DF82;
+$dark-placeholder: rgba(51, 255, 102, 0.68);
+$navbar-color: rgb(41, 198, 83);
+
 
 // Global
 $spring-8points: 8px;

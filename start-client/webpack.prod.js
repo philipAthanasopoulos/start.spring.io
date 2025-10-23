@@ -14,6 +14,15 @@ const config = {
   mode: 'production',
   devtool: 'source-map',
   optimization: {
+    minimize: true,
+    minimizer: [
+      new (require('terser-webpack-plugin'))({
+        terserOptions: {
+          keep_fnames: true,
+        },
+        extractComments: false,
+      }),
+    ],
     runtimeChunk: true,
     splitChunks: {
       chunks: 'all',

@@ -14,15 +14,19 @@ import { toast } from 'react-toastify'
 import useHash from './utils/Hash'
 import useWindowsUtils from './utils/WindowsUtils'
 import { AppContext } from './reducer/App'
-import { DependencyDialog } from './common/dependency'
-import { Fields, Loading } from './common/builder'
-import { Header, SideLeft, SideRight } from './common/layout'
+import { Dependency, DependencyDialog } from './common/dependency'
+import { Fields } from './common/builder'
+import { Header } from './common/layout'
 import { InitializrContext } from './reducer/Initializr'
 import { getConfig, getInfo, getProject } from './utils/ApiUtils'
-import { Form } from './common/form'
+import { Button, Form } from './common/form'
+import Navbar from './common/Navigation/Navbar'
+import { BrowserRouter, Route, Routes } from 'react-router'
+import DatabaseForm from './common/builder/DatabaseForm'
+import DomainClassForm from './common/builder/DomainClassForm'
+import AssociationDescriptionsForm from './common/builder/AssociationDescriptionsForm'
+import Actions from './common/builder/Actions'
 import Diagram from './common/UmlGraph/Diagram'
-import { TbTool } from 'react-icons/tb'
-import { AiOutlineExperiment, AiTwotoneExperiment } from 'react-icons/ai'
 
 const Explore = lazy(() => import('./common/explore/Explore'))
 const Share = lazy(() => import('./common/share/Share'))
@@ -148,37 +152,57 @@ export default function Application() {
           onEscape={onEscape}
         />
       </Suspense>
-      {/* <SideLeft /> */}
       <div id='main'>
-        <Header />
-        <hr className='divider' />
-        <Form onSubmit={onSubmit}>
-          {!complete ? (
-            <Loading />
-          ) : (
-            <>
-              <Fields
-                onSubmit={onSubmit}
-                onShare={onShare}
-                s
-                onExplore={onExplore}
-                refExplore={buttonExplore}
-                refSubmit={buttonSubmit}
-                refDependency={buttonDependency}
-                generating={generating}
+        {complete && (
+          <Form onSubmit={onSubmit}>
+            {/* <Header /> */}
+            <DependencyDialog onClose={onEscape} />
+            <Routes>
+              <Route path='/' element={<Fields />} />
+              <Route path='/database' element={<DatabaseForm />} />
+              <Route path='/entities' element={<DomainClassForm />} />
+              <Route
+                path='/relationships'
+                element={<AssociationDescriptionsForm />}
               />
-              <DependencyDialog onClose={onEscape} />
-              <h2>
-                Class Diagram (<AiOutlineExperiment />
-                Experimental)
-              </h2>
-              <hr />
-              <Diagram />
-            </>
+              <Route
+                path={'/dependencies'}
+                element={<Dependency refButton={buttonDependency} />}
+              />
+              <Route path={'/diagram'} element={<Diagram />} />
+            </Routes>
+          </Form>
+        )}
+        <Actions>
+          {generating ? (
+            <span className='placeholder-button placeholder-button-submit placeholder-button-special'>
+              Generating...
+            </span>
+          ) : (
+            <Button
+              id='generate-project'
+              variant='primary'
+              onClick={onSubmit}
+              hotkey={`${windowsUtils.symb} + ⏎`}
+              refButton={buttonSubmit}
+              disabled={generating}
+            >
+              Generate
+            </Button>
           )}
-        </Form>
+          <Button
+            id='explore-project'
+            onClick={onExplore}
+            hotkey='Ctrl + Space'
+            refButton={buttonExplore}
+          >
+            Explore
+          </Button>
+          <Button id='share-project' onClick={onShare}>
+            Share...
+          </Button>
+        </Actions>
       </div>
-      {/* <SideRight /> */}
       <Suspense fallback=''>
         <Share open={shareOpen || false} shareUrl={share} onClose={onEscape} />
         <Explore

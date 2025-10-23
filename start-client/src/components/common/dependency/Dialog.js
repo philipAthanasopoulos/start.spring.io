@@ -300,7 +300,6 @@ function Dialog({ onClose }) {
           </CSSTransition>
         )}
       </TransitionGroup>
-
       <Overlay open={list || false} />
     </>
   )

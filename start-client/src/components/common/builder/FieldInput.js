@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-function FieldInput({ id, text, value, onChange, disabled, inputRef }) {
+function FieldInput({ id, text, value, onChange, disabled, inputRef, placeholder }) {
   return (
     <div className='control control-inline'>
       <label htmlFor={id}>{text}</label>
@@ -13,6 +13,7 @@ function FieldInput({ id, text, value, onChange, disabled, inputRef }) {
         value={value}
         onChange={onChange}
         ref={inputRef}
+        placeholder={placeholder}
       />
     </div>
   )
