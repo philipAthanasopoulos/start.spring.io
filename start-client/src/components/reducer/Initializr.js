@@ -42,6 +42,7 @@ export const defaultInitializrContext = {
   share: '',
   errors: {},
   warnings: {},
+  database: '',
 }
 
 const localStorage =

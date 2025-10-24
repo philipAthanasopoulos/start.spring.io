@@ -10,6 +10,7 @@ import { InitializrProvider } from './components/reducer/Initializr'
 import Application from './components/Application'
 import Navbar from './components/common/Navigation/Navbar'
 import { BrowserRouter } from 'react-router'
+import { SideLeft } from './components/common/layout'
 
 console.disableYellowBox = true
 render(
@@ -21,8 +22,12 @@ render(
           position='top-center'
           hideProgressBar
         />
-        <Navbar />
-        <Application />
+        <div style={{ display: 'flex' }}>
+          <Navbar />
+          <div style={{ flex: 1, height: '100vh', overflowY: 'auto' }}>
+            <Application />
+          </div>
+        </div>
       </InitializrProvider>
     </AppProvider>
   </BrowserRouter>,

@@ -11,8 +11,6 @@ html {
 body {
   font-family: $spring-font-family;
   background-color: $light-background;
-  margin: 0;
-  padding-top: 150px;
 }
 
 #app {
@@ -152,8 +150,8 @@ body {
 #main {
   margin: 0 auto;
   min-height: 100vh;
-  padding: 0 40px;
   max-width: $spring-max-width;
+  padding: 50px;
 }
 
 // Header
@@ -665,6 +663,7 @@ button.button {
   position: fixed;
   right: 0px;
   left: 0px;
+
 
   .actions-container {
     background: $light-background-seconday;
@@ -1601,49 +1600,78 @@ option {
 }
 
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 1000;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  padding: 8px 16px; /* height will follow content */
-  background: $navbar-color;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  background: rgba($dark-primary, 0.4);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  .logo {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }
 
   ul {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap:5%;
-    align-content: center;
-    align-items: center;
+    flex-direction: column;
+    padding: 0;
   }
 
-  li {
-    display: flex;
-    list-style: none;
-    align-items: center;
-    gap: 10px;
-  }
 
   a {
     color: $dark-color;
     text-decoration-line: none;
     font-size: large;
-  }
-
-  a {
+    display: inline-block;
+    padding: 20px;
+    list-style: none;
     transition: color 200ms ease, text-decoration-color 200ms ease;
     -webkit-transition: color 200ms ease, text-decoration-color 200ms ease;
     text-decoration-color: transparent;
   }
 
-  a:hover {
-    text-decoration-line: underline;
-    text-decoration-color: currentColor;
+  a.selected {
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
   }
+
+  a:hover {
+  }
+}
+
+.box-options {
+  display: flex;
+  gap: 10px;
+}
+
+.box-option {
+  color: white;
+  display: flex;
+  cursor: pointer;
+  border: 1px solid white;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  background: none;
+}
+
+.box-option.selected {
+  color: $dark-primary;
+  //background: darken($dark-primary, 55%);
+  outline: 2px solid $dark-primary;
+  border-color: $dark-primary;
+  box-shadow: 0 0px 20px 0 rgba($dark-primary, 1);
+  transition: background 100ms, color 100ms, box-shadow 200ms;
 }
 
 
