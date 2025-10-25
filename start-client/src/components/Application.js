@@ -16,12 +16,9 @@ import useWindowsUtils from './utils/WindowsUtils'
 import { AppContext } from './reducer/App'
 import { Dependency, DependencyDialog } from './common/dependency'
 import { Fields } from './common/builder'
-import { Header } from './common/layout'
 import { InitializrContext } from './reducer/Initializr'
 import { getConfig, getInfo, getProject } from './utils/ApiUtils'
 import { Button, Form } from './common/form'
-import Navbar from './common/Navigation/Navbar'
-import { BrowserRouter, Route, Routes } from 'react-router'
 import DatabaseForm from './common/builder/DatabaseForm'
 import DomainClassForm from './common/builder/DomainClassForm'
 import AssociationDescriptionsForm from './common/builder/AssociationDescriptionsForm'
@@ -41,6 +38,7 @@ export default function Application() {
     share: shareOpen,
     explore: exploreOpen,
     history: historyOpen,
+    activeTab,
     list,
     dependencies,
   } = useContext(AppContext)
@@ -155,22 +153,15 @@ export default function Application() {
       <div id='main'>
         {complete && (
           <Form onSubmit={onSubmit}>
-            {/* <Header /> */}
             <DependencyDialog onClose={onEscape} />
-            <Routes>
-              <Route path='/' element={<Fields />} />
-              <Route path='/database' element={<DatabaseForm />} />
-              <Route path='/entities' element={<DomainClassForm />} />
-              <Route
-                path='/relationships'
-                element={<AssociationDescriptionsForm />}
-              />
-              <Route
-                path={'/dependencies'}
-                element={<Dependency refButton={buttonDependency} />}
-              />
-              <Route path={'/diagram'} element={<Diagram />} />
-            </Routes>
+            {(activeTab === 'project' || activeTab === '') && <Fields />}
+            {activeTab === 'database' && <DatabaseForm />}
+            {activeTab === 'entities' && <DomainClassForm />}
+            {activeTab === 'relationships' && <AssociationDescriptionsForm />}
+            {activeTab === 'dependencies' && (
+              <Dependency refButton={buttonDependency} />
+            )}
+            {activeTab === 'diagram' && <Diagram />}
           </Form>
         )}
         <Actions>

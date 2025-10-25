@@ -97,9 +97,18 @@ const config = {
       title: 'Bootcrane',
       description: `Bootcrane scaffolds Spring Boot projects. REST, ORM and Thymeleaf OUT OF THE BOX!`,
       url: 'https://bootcrane.dev',
-      // twitter: '@springboot',
-      image: `https://start.spring.io/images/initializr-card.jpg`,
+      image: path.resolve('public/images/bootcrane_logo.png'),
       theme: `#6db33f`,
+      meta: {
+        'og:title': 'Bootcrane',
+        'og:description': 'Bootcrane scaffolds Spring Boot projects. REST, ORM and Thymeleaf OUT OF THE BOX!',
+        'og:image': path.resolve('public/images/bootcrane_logo.png'),
+        'og:url': 'https://bootcrane.dev',
+        'twitter:card': 'summary_large_image',
+        'twitter:title': 'Bootcrane',
+        'twitter:description': 'Bootcrane scaffolds Spring Boot projects. REST, ORM and Thymeleaf OUT OF THE BOX!',
+        'twitter:image': path.resolve('public/images/bootcrane_logo.png'),
+      },
     }),
     new WebpackGoogleTagManager(process.env.GOOGLE_TAGMANAGER_ID),
     new WebpackPwaManifest({
@@ -114,7 +123,7 @@ const config = {
       crossorigin: null,
       icons: [
         {
-          src: path.resolve('src/images/scaffoldr_logo.png'),
+          src: path.resolve('src/images/bootcrane_logo.png'),
           sizes: [48, 72, 96, 144, 192, 256, 384, 512],
         },
       ],

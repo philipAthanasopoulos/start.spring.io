@@ -323,6 +323,8 @@ hr.divider {
 
 .control {
   padding: 0.6rem 0;
+  max-width: $spring-max-width / 2;
+  gap: 1rem;
 
   .label {
     font-weight: 600;
@@ -360,7 +362,7 @@ hr.divider {
   input {
     color: $light-background;
     background: $light-background;
-    max-width: 520px;
+    max-width: 200px;
   }
 }
 
@@ -495,7 +497,6 @@ button.button {
   font-weight: 600;
   line-height: 1.23rem;
   overflow: hidden;
-  margin-right: 1rem;
   cursor: pointer;
   background: transparent;
   z-index: 1;
@@ -666,6 +667,9 @@ button.button {
 
 
   .actions-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
     background: $light-background-seconday;
     padding: 20px 0.5rem;
     margin: 0 auto;
@@ -1150,7 +1154,7 @@ button.button {
     height: 50px;
     background: $light-background;
     border-bottom: 1px solid $light-border;
-    position: absolute;
+    //position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -1164,9 +1168,9 @@ button.button {
       top: 0;
       height: 50px;
       line-height: 50px;
-      padding: 7px 15px 3px;
+      //padding: 7px 15px 3px;
       font-size: $spring-font-size + 2;
-      padding-right: 210px;
+      //padding-right: 210px;
 
       &::placeholder {
         font-size: $spring-font-size;
@@ -1604,20 +1608,22 @@ option {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  background: rgba($dark-primary, 0.4);
-  border-radius: 16px;
+  //align-items: center;
+  background: darken(rgba($dark-background, 0.4), 10%);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  max-width: $spring-max-width/6;
+
 
   .logo {
-    padding-top: 10px;
+    color: $dark-primary;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    align-content: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) ;
   }
 
   ul {
@@ -1626,27 +1632,34 @@ option {
     padding: 0;
   }
 
-
-  a {
+  li {
     color: $dark-color;
     text-decoration-line: none;
     font-size: large;
     display: inline-block;
     padding: 20px;
     list-style: none;
-    transition: color 200ms ease, text-decoration-color 200ms ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     -webkit-transition: color 200ms ease, text-decoration-color 200ms ease;
     text-decoration-color: transparent;
   }
 
-  a.selected {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
+  li.selected {
+    background-color: $dark-placeholder;
   }
 
-  a:hover {
+  li:hover {
+    cursor: pointer;
+    background-color: $dark-placeholder;
+    transition: ease-in-out 100ms;
+  }
+
+  li:hover:after {
+    cursor: pointer;
+    transition: ease-in-out 100ms;
   }
 }
+
 
 .box-options {
   display: flex;
@@ -1663,15 +1676,81 @@ option {
   gap: 20px;
   padding: 20px;
   background: none;
+  border-radius: 20px;
 }
 
 .box-option.selected {
   color: $dark-primary;
-  //background: darken($dark-primary, 55%);
-  outline: 2px solid $dark-primary;
+  background: darken($dark-primary, 55%);
   border-color: $dark-primary;
-  box-shadow: 0 0px 20px 0 rgba($dark-primary, 1);
-  transition: background 100ms, color 100ms, box-shadow 200ms;
+  font-weight: bolder;
+  box-shadow: 0 0 20px 4px rgba($dark-primary, 0.5);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms;
+  transform: scale(1.05);
+}
+
+.domain-description {
+  border: solid 1px #ddd;
+  border-left: solid 8px $dark-primary;
+  padding: 1.5rem;
+  margin: 1.5rem;
+  margin-left: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 300ms ease, transform 200ms ease, padding 200ms ease, margin 200ms ease;
+}
+
+.remove-btn {
+  display: flex;
+  align-items: center;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.domain-field {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 0.5rem;
+}
+
+.remove-field-btn {
+  padding: 2px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.add-field-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.remove-entity-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.add-domain-btn {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.media-container {
+  border-top: 1px solid rgba(255, 255, 255, 0.3) ;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 }
 
 

@@ -5,7 +5,7 @@ import { InitializrContext } from '../../reducer/Initializr'
 import { Button } from '../form'
 import options from './typeOptions.json'
 import { GrClose } from 'react-icons/gr'
-import { BiPlus } from 'react-icons/bi'
+import { BiPlus, BiPlusCircle, BiTrash } from 'react-icons/bi'
 import { FaShapes } from 'react-icons/fa6'
 
 function DomainClassForm() {
@@ -17,9 +17,9 @@ function DomainClassForm() {
   const update = args => {
     dispatchInitializr({ type: 'UPDATE', payload: args })
   }
-  const [useLombok, setUseLombok] = useState(
-    () => get(values, 'domainClassDescriptions', [])[0]?.useLombok ?? false
-  )
+  const [useLombok, setUseLombok] = useState(() => {
+    return get(values, 'useLombok') === 'true'
+  })
 
   const handleClassNameChange = (event, index) => {
     dispatchInitializr({
@@ -102,70 +102,31 @@ function DomainClassForm() {
 
   return (
     <Control text='Entities' icon={<FaShapes />}>
-      <div>
+      <div className='domain-form'>
         {get(values, 'domainClassDescriptions', []).map(
           (description, index) => (
-            <div
-              key={`description-${index}`}
-              style={{
-                border: 'solid 1px white',
-                borderLeft: `solid 20px #33ff66`,
-                padding: '10px',
-                margin: '20px',
-                borderRadius: '10px',
-                overflow: 'hidden',
-                transition:
-                  'max-height 300ms ease, padding 200ms ease, margin 200ms ease',
-                maxHeight: `${
-                  200 +
-                  (description.fields ? description.fields.length * 56 : 0)
-                }px`,
-              }}
-            >
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '8px',
-                }}
-              >
-                <FieldInput
-                  id={`input-domainClassName-${index}`}
-                  value={description.className || ''}
-                  text='Name'
-                  placeholder={'e.g User'}
-                  onChange={event => handleClassNameChange(event, index)}
-                />
+            <div key={`description-${index}`} className='domain-description'>
+              <div className='remove-entity-btn'>
                 <Button
                   onClick={() => handleRemoveEntity(index)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    background: 'none',
-                    border: 'none',
-                    color: 'red',
-                    cursor: 'pointer',
-                  }}
                   title='Remove Entity'
                   aria-label='Remove Entity'
                 >
                   <GrClose />
                 </Button>
               </div>
+              <FieldInput
+                id={`input-domainClassName-${index}`}
+                value={description.className || ''}
+                text='Name'
+                placeholder='e.g User'
+                onChange={event => handleClassNameChange(event, index)}
+              />
               <div>
                 {description.fields.map((field, fieldIndex) => (
-                  <div
-                    key={fieldIndex}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      marginBottom: '8px',
-                    }}
-                  >
+                  <div key={fieldIndex} className='domain-field'>
                     <FieldInput
-                      id={`input-fieldName-${fieldIndex}`}
+                      id={`input-fieldName-${index}-${fieldIndex}`}
                       value={field.fieldName || ''}
                       text='Field Name'
                       placeholder={'e.g firstName'}
@@ -197,36 +158,20 @@ function DomainClassForm() {
                         handleRemoveField(index, fieldIndex)
                       }}
                       key={`remove-field-${index}-${fieldIndex}`}
-                      style={{
-                        padding: '2px 8px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                      }}
+                      className='remove-field-btn'
                       title='Remove Field'
                     >
-                      <span>
-                        <i className='bi bi-trash' />
-                      </span>
+                      <BiTrash />
                     </a>
                   </div>
                 ))}
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    marginBottom: '16px',
-                  }}
-                >
+                <div className='add-field-btn'>
                   <Button
                     id={`add-field-${index}`}
                     variant='primary'
                     onClick={() => handleAddField(index)}
                   >
-                    <span style={{ display: 'flex', alignItems: 'center' }}>
-                      <BiPlus />
-                    </span>
+                    <BiPlus />
                   </Button>
                 </div>
                 <div>
@@ -260,7 +205,7 @@ function DomainClassForm() {
           )
         )}
         {get(values, 'domainClassDescriptions', []).length > 0 && (
-          <div style={{ marginTop: '24px' }}>
+          <div>
             <input
               type='checkbox'
               id='use-lombok-checkbox'
@@ -272,14 +217,11 @@ function DomainClassForm() {
           </div>
         )}
 
-        <Button id={'add-domain-class'} onClick={handleAddDomainClass}>
-          <span style={{ display: 'flex', alignItems: 'center' }}>
-            <i
-              className={'bi bi-plus-circle'}
-              style={{ paddingRight: '10px' }}
-            />
+        <Button id='add-domain-class' onClick={handleAddDomainClass}>
+          <div className='add-domain-btn'>
+            <BiPlusCircle />
             New Entity
-          </span>
+          </div>
         </Button>
       </div>
     </Control>

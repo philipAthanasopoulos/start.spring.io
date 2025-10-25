@@ -1,14 +1,16 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router'
-import { Header, Logo } from '../layout'
-import { TbCirclesRelation, TbTool } from 'react-icons/tb'
-import { BsDiagram2Fill, BsHammer } from 'react-icons/bs'
+import React, { useContext } from 'react'
+import { TbCirclesRelation } from 'react-icons/tb'
+import { BsDiagram2Fill } from 'react-icons/bs'
 import { IoMdHammer } from 'react-icons/io'
 import { FaDatabase, FaShapes } from 'react-icons/fa6'
 import { LuLibraryBig } from 'react-icons/lu'
+import { Logo } from '../layout'
+import { AppContext } from '../../reducer/App'
+import Media from '../layout/Media'
 
 function Navbar() {
-  const location = useLocation()
+  const { dispatch, activeTab } = useContext(AppContext)
+
   return (
     <div className='navbar'>
       <div className='logo'>
@@ -16,42 +18,49 @@ function Navbar() {
         <h1>Bootcrane</h1>
       </div>
       <ul>
-        <Link to='/' className={location.pathname === '/' ? 'selected' : ''}>
+        <li
+          className={activeTab === 'project' ? 'selected' : ''}
+          onClick={() => dispatch({ type: 'SET_TAB', payload: 'project' })}
+        >
           <IoMdHammer /> Project
-        </Link>
-        <Link
-          to='/database'
-          className={location.pathname === '/database' ? 'selected' : ''}
+        </li>
+        <li
+          className={activeTab === 'database' ? 'selected' : ''}
+          onClick={() => dispatch({ type: 'SET_TAB', payload: 'database' })}
         >
           <FaDatabase /> Database
-        </Link>
-        <Link
-          to='/entities'
-          className={location.pathname === '/entities' ? 'selected' : ''}
+        </li>
+        <li
+          className={activeTab === 'entities' ? 'selected' : ''}
+          onClick={() => dispatch({ type: 'SET_TAB', payload: 'entities' })}
         >
           <FaShapes /> Entities
-        </Link>
-        <Link
-          to='/relationships'
-          className={location.pathname === '/relationships' ? 'selected' : ''}
+        </li>
+        <li
+          className={activeTab === 'relationships' ? 'selected' : ''}
+          onClick={() =>
+            dispatch({ type: 'SET_TAB', payload: 'relationships' })
+          }
         >
           <TbCirclesRelation /> Relationships
-        </Link>
-        <Link
-          to='/diagram'
-          className={location.pathname === '/diagram' ? 'selected' : ''}
+        </li>
+        <li
+          className={activeTab === 'diagram' ? 'selected' : ''}
+          onClick={() => dispatch({ type: 'SET_TAB', payload: 'diagram' })}
         >
           <BsDiagram2Fill /> Diagram
-        </Link>
-        <Link
-          to='/dependencies'
-          className={location.pathname === '/dependencies' ? 'selected' : ''}
+        </li>
+        <li
+          className={activeTab === 'dependencies' ? 'selected' : ''}
+          onClick={() => dispatch({ type: 'SET_TAB', payload: 'dependencies' })}
         >
           <LuLibraryBig /> Dependencies
-        </Link>
+        </li>
       </ul>
       <div></div>
-      <div></div>
+      <div>
+        <Media />
+      </div>
     </div>
   )
 }

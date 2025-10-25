@@ -43,6 +43,7 @@ export const defaultInitializrContext = {
   errors: {},
   warnings: {},
   database: '',
+  useLombok: '',
 }
 
 const localStorage =
@@ -76,7 +77,15 @@ const getPersistedOrDefault = json => {
       java:
         localStorage.getItem('java') || get(json, 'defaultValues.meta').java,
     },
-    dependencies: [],
+    dependencies: localStorage.getItem('database')
+      ? [
+          localStorage.getItem('database'),
+          'data-jpa',
+          `${localStorage.getItem('database')}`,
+        ]
+      : [],
+    database: localStorage.getItem('database'),
+    useLombok: localStorage.getItem('useLombok'),
   }
   const checks = ['project', 'language', 'meta.java', 'meta.packaging']
   checks.forEach(key => {
@@ -202,7 +211,7 @@ export function reducer(state, action) {
         ],
         generateRestController: false,
         generateFrontendController: false,
-        useLombok: false,
+        useLombok: get(state, 'useLombok') === 'true',
       }
       values.domainClassDescriptions = [
         ...get(values, 'domainClassDescriptions', []),
@@ -311,6 +320,8 @@ export function reducer(state, action) {
 
       values.domainClassDescriptions = updatedDescriptions
       values.dependencies = updatedDependencies
+      values.useLombok = useLombok
+      localStorage.setItem('useLombok', useLombok)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'TOGGLE_REST_CONTROLLER': {
@@ -457,6 +468,7 @@ export function reducer(state, action) {
 
       values.database = database
       values.dependencies = updatedDependencies
+      localStorage.setItem('database', database)
       return { ...state, values, share: getShareUrl(values) }
     }
     default:

@@ -23,6 +23,7 @@ export const defaultAppContext = {
     groups: [],
   },
   histories: [],
+  activeTab: 'project',
 }
 
 const localStorage =
@@ -127,6 +128,10 @@ export function reducer(state, action) {
     case 'CLEAR_HISTORY': {
       localStorage.setItem('histories', JSON.stringify([]))
       return { ...state, histories: [] }
+    }
+    case 'SET_TAB': {
+      const value = get(action, 'payload', '')
+      return { ...state, activeTab: value }
     }
     default:
       return state

@@ -20,59 +20,31 @@ function DatabaseForm() {
             key: 'postgresql',
             text: 'PostgreSQL',
             icon: SiPostgresql({ size: 30 }),
+            description:
+              "The world's most advanced open source relational database.",
           },
           { key: 'mysql', text: 'MySQL', icon: GrMysql({ size: 30 }) },
           {
             key: 'mariadb',
             text: 'MariaDB',
             icon: SiMariadb({ size: 30 }),
+            description:
+              'A community-developed fork of MySQL intended to remain free and open-source.',
           },
           {
             key: 'oracle',
             text: 'Oracle',
             icon: GrOracle({ size: 30 }),
+            description: "Oracle's relational database",
           },
           {
             key: 'sqlserver',
             text: 'SQL Server',
             icon: BiLogoMicrosoft({ size: 30 }),
+            description: "Microsoft's relational database",
           },
         ]}
       />
-      {/* <FieldRadio */}
-      {/*   id='input-database' */}
-      {/*   value={get(values, 'database')} */}
-      {/*   options={[ */}
-      {/*     { key: '', text: 'None' }, */}
-      {/*     { */}
-      {/*       key: 'postgresql', */}
-      {/*       text: 'PostgreSQL', */}
-      {/*       icon: SiPostgresql({ size: 30 }), */}
-      {/*     }, */}
-      {/*     { key: 'mysql', text: 'MySQL', icon: GrMysql({ size: 30 }) }, */}
-      {/*     { */}
-      {/*       key: 'mariadb', */}
-      {/*       text: 'MariaDB', */}
-      {/*       icon: SiMariadb({ size: 30 }), */}
-      {/*     }, */}
-      {/*     { */}
-      {/*       key: 'oracle', */}
-      {/*       text: 'Oracle', */}
-      {/*       icon: GrOracle({ size: 30 }), */}
-      {/*     }, */}
-      {/*     { */}
-      {/*       key: 'sqlserver', */}
-      {/*       text: 'SQL Server', */}
-      {/*       icon: BiLogoMicrosoft({ size: 30 }), */}
-      {/*     }, */}
-      {/*   ]} */}
-      {/*   onChange={value => { */}
-      {/*     dispatchInitializr({ */}
-      {/*       type: 'SELECT_DATABASE', */}
-      {/*       payload: { database: value }, */}
-      {/*     }) */}
-      {/*   }} */}
-      {/* /> */}
     </Control>
   )
 }
