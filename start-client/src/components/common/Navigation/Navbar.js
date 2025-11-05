@@ -45,10 +45,10 @@ function Navbar() {
           <TbCirclesRelation /> Relationships
         </li>
         <li
-          className={activeTab === 'diagram' ? 'selected' : ''}
-          onClick={() => dispatch({ type: 'SET_TAB', payload: 'diagram' })}
+          // className={activeTab === 'diagram' ? 'selected' : ''}
+          // onClick={() => dispatch({ type: 'SET_TAB', payload: 'diagram' })}
         >
-          <BsDiagram2Fill /> Diagram
+          <BsDiagram2Fill /> Diagram <span className="badge">Coming soon</span>
         </li>
         <li
           className={activeTab === 'dependencies' ? 'selected' : ''}
@@ -57,7 +57,6 @@ function Navbar() {
           <LuLibraryBig /> Dependencies
         </li>
       </ul>
-      <div></div>
       <div>
         <Media />
       </div>

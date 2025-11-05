@@ -496,9 +496,7 @@ button.button {
   text-transform: uppercase;
   font-weight: 600;
   line-height: 1.23rem;
-  overflow: hidden;
   cursor: pointer;
-  background: transparent;
   z-index: 1;
   background: $light-background;
   font-family: $spring-font-family;
@@ -530,63 +528,30 @@ button.button {
     padding: 0;
   }
 
-  &:before {
-    content: '';
-    display: block;
-    position: absolute;
-    background: $light-color;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    opacity: 0;
-    z-index: -1;
-    @include transition(all calc($spring-transition-duration / 2));
-  }
-
   &:hover,
   &:disabled {
     color: white;
-
-    &:before {
-      opacity: 1;
-    }
+    background: $light-color;
+    border-color: $light-color;
   }
 
   &.active {
     color: white;
-
-    &:before {
-      width: 100%;
-    }
+    background: $light-color;
+    border-color: $light-color;
   }
 
   &.inverse {
-    &:before {
-      bottom: 0;
-      width: 100%;
-      right: 0;
-      top: 0;
-      height: 100%;
-    }
-
     &:hover {
-      &:before {
-        opacity: 1;
-      }
-    }
-
-    &.top {
-      &:before {
-      }
+      color: white;
+      background: $light-color;
+      border-color: $light-color;
     }
 
     &.active {
       color: white;
-
-      &:before {
-        opacity: 1;
-      }
+      background: $light-color;
+      border-color: $light-color;
     }
   }
 
@@ -662,8 +627,8 @@ button.button {
   bottom: 0;
   z-index: 3;
   position: fixed;
-  right: 0px;
-  left: 0px;
+  right: 0;
+  left: 0;
 
 
   .actions-container {
@@ -671,9 +636,9 @@ button.button {
     justify-content: center;
     gap: 10px;
     background: $light-background-seconday;
-    padding: 20px 0.5rem;
-    margin: 0 auto;
-    height: 50px;
+    //padding: 0.5rem 0.5rem;
+    padding: 0.5rem;
+    //height: auto;
   }
 
   .button {
@@ -685,6 +650,10 @@ button.button {
 
     &:focus {
       box-shadow: 0 0 0 4px darken($light-border, 6);
+    }
+
+    &:hover {
+      background: $dark-color;
     }
 
     &:last-child {
@@ -733,7 +702,6 @@ button.button {
 .warnings {
   $color: #e8ba00;
   position: relative;
-  margin-bottom: $spring-8points;
   padding: $spring-8points * 2;
   line-height: 26px;
   margin: 0 auto;
@@ -1623,7 +1591,7 @@ option {
     flex-direction: row;
     align-items: center;
     padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3) ;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   ul {
@@ -1659,7 +1627,6 @@ option {
     transition: ease-in-out 100ms;
   }
 }
-
 
 .box-options {
   display: flex;
@@ -1742,7 +1709,7 @@ option {
 }
 
 .media-container {
-  border-top: 1px solid rgba(255, 255, 255, 0.3) ;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
@@ -1751,6 +1718,21 @@ option {
     text-decoration: none;
     color: inherit;
   }
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-left: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background-color: $dark-primary;
+  color: $dark-background;
+  border-radius: 16px;
+  vertical-align: middle;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 

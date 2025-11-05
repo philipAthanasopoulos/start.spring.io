@@ -85,7 +85,7 @@ const getPersistedOrDefault = json => {
         ]
       : [],
     database: localStorage.getItem('database'),
-    useLombok: localStorage.getItem('useLombok'),
+    useLombok: localStorage.getItem('useLombok') === 'true',
   }
   const checks = ['project', 'language', 'meta.java', 'meta.packaging']
   checks.forEach(key => {
@@ -211,7 +211,7 @@ export function reducer(state, action) {
         ],
         generateRestController: false,
         generateFrontendController: false,
-        useLombok: get(state, 'useLombok') === 'true',
+        useLombok: values.useLombok,
       }
       values.domainClassDescriptions = [
         ...get(values, 'domainClassDescriptions', []),

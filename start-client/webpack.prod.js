@@ -30,7 +30,7 @@ const config = {
   },
   output: {
     publicPath: '/',
-    clean:true,
+    clean: true,
   },
   plugins: [
     new BundleAnalyzerPlugin({

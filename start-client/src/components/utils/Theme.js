@@ -8,8 +8,9 @@ function getTheme() {
   const theme = localStorage.getItem('springtheme')
   if (!theme) {
     return isDarkConfig ? 'dark' : 'light'
+    // return 'light'
   }
-  return theme
+  return 'dark'
 }
 
 export default function useTheme() {

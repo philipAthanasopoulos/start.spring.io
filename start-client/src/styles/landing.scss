@@ -1,0 +1,310 @@
+@import './_variables.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+body, html, #root {
+    margin: 0;
+    height: 100%;
+    background: $dark-background;
+    color: $dark-color;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.lp-container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+}
+
+.lp-header {
+    position: sticky;
+    top: 0;
+    backdrop-filter: saturate(180%) blur(8px);
+    background: $dark-background;
+    border-bottom: 1px solid $dark-border;
+}
+
+.lp-header .lp-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+}
+
+.lp-logo {
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
+
+.lp-nav a {
+    margin-left: 16px;
+    font-size: 14px;
+    color: $dark-placeholder;
+}
+
+.lp-btn {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: $dark-primary;
+    color: white;
+    font-weight: 600;
+}
+
+.lp-btn-outline {
+    background: transparent;
+    border: 1px solid $dark-border;
+    color: $dark-color;
+}
+
+.lp-btn-contrast {
+    background: $dark-color;
+    color: $dark-background;
+}
+
+.lp-hero {
+    padding: 72px 0 24px;
+    text-align: center;
+}
+
+.lp-hero h1 {
+    font-size: 44px;
+    margin: 0 0 12px;
+}
+
+.lp-hero p {
+    color: $dark-placeholder;
+    font-size: 18px;
+    margin: 0 auto 20px;
+    max-width: 720px;
+}
+
+.lp-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.lp-hero-img {
+    width: min(900px, 92%);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+    border: 1px solid $dark-border;
+}
+
+.lp-section {
+    padding: 64px 0;
+}
+
+.lp-section-alt {
+    background: $dark-background-secondary;
+    border-top: 1px solid $dark-border;
+    border-bottom: 1px solid $dark-border;
+}
+
+.lp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.lp-card {
+    background: $dark-background-secondary;
+    border: 1px solid $dark-border;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.lp-pricing {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.lp-plan {
+    background: $dark-background-secondary;
+    border: 1px solid $dark-border;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.lp-plan-pro {
+    outline: 2px solid $dark-primary;
+}
+
+.lp-price {
+    font-size: 28px;
+    font-weight: 800;
+    margin: 6px 0 12px;
+}
+
+.lp-footer {
+    padding: 48px 0;
+    border-top: 1px solid $dark-border;
+    background: $dark-background-secondary;
+}
+
+.lp-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.lp-footer a, .lp-footer p {
+    color: $dark-placeholder;
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+.lp-databases {
+  background: $dark-background-secondary;
+  border-top: 1px solid $dark-border;
+  border-bottom: 1px solid $dark-border;
+}
+
+.lp-db-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+
+.lp-db-card {
+  background: $dark-background;
+  border: 1px solid $dark-border;
+  border-radius: 14px;
+  padding: 24px 18px 18px 18px;
+  text-align: center;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  transition: transform 0.18s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lp-db-card img {
+  margin-bottom: 12px;
+  max-height: 40px;
+  max-width: 60px;
+}
+
+.lp-db-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: $dark-primary;
+}
+
+.lp-db-card p {
+  color: $dark-placeholder;
+  font-size: 15px;
+  margin: 0;
+}
+
+.lp-db-card:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.13);
+}
+
+.lp-icon {
+  color: $dark-primary;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lp-animate-fadeInUp {
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(.23,1.01,.32,1) forwards;
+}
+
+.lp-animate-fadeIn {
+  opacity: 0;
+  animation: fadeIn 0.7s ease forwards;
+}
+
+.lp-animate-scaleIn {
+  opacity: 0;
+  animation: scaleIn 0.7s cubic-bezier(.23,1.01,.32,1) forwards;
+}
+
+.lp-animate-delay-1 {
+  animation-delay: 0.2s;
+}
+.lp-animate-delay-2 {
+  animation-delay: 0.4s;
+}
+.lp-animate-delay-3 {
+  animation-delay: 0.6s;
+}
+.lp-animate-delay-4 {
+  animation-delay: 0.8s;
+}
+
+@media (max-width: 900px) {
+    .lp-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lp-pricing {
+        grid-template-columns: 1fr;
+    }
+
+    .lp-footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .lp-db-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lp-hero.lp-animate-fadeInUp {
+  will-change: opacity, transform;
+}
+
+.lp-card.lp-animate-fadeInUp {
+  will-change: opacity, transform;
+}
+
+.lp-plan.lp-animate-scaleIn {
+  will-change: opacity, transform;
+}
+
+.lp-trust img.lp-animate-scaleIn {
+  will-change: opacity, transform;
+}

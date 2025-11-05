@@ -58,7 +58,9 @@
         display: inline-block;
       }
       .actions-file {
-        display: inline-block;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
         height: 40px;
         margin-left: 16px;
         color: rgba(0, 0, 0, 0.2);
@@ -474,15 +476,15 @@ pre.prism-code {
 }
 
 .explorer-actions {
-  display: block;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   text-align: center;
   background: $light-background-seconday;
-  padding: 20px 0;
-  bottom: 0;
   z-index: 400;
   height: 50px;
   vertical-align: top;

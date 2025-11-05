@@ -77,16 +77,19 @@ body.dark {
     border-color: $dark-color;
     background: $dark-background;
     color: $dark-color;
-    &:before {
-      background: $dark-color;
-    }
+
     &:hover {
       color: $dark-background;
+      background: $dark-color;
+      border-color: $dark-color;
     }
   }
+
   a.button.inverse.active,
   button.button.inverse.active {
     color: $dark-background;
+    background: $dark-color;
+    border-color: $dark-color;
   }
   .input {
     background: $dark-background;

@@ -72,17 +72,18 @@ export default function Diagram() {
   }, [chart])
 
   return (
-    <div
-      ref={ref}
-      style={{
-        display: 'flex',
-        overflow: 'auto',
-        paddingBottom: '100px',
-        maxWidth: '100%',
-        boxSizing: 'border-box',
-        alignContent: 'center',
-        justifyContent: 'center',
-      }}
-    />
+    // <div
+    //   ref={ref}
+    //   style={{
+    //     display: 'flex',
+    //     overflow: 'auto',
+    //     paddingBottom: '100px',
+    //     maxWidth: '100%',
+    //     boxSizing: 'border-box',
+    //     alignContent: 'center',
+    //     justifyContent: 'center',
+    //   }}
+    // />
+    <div>Coming soon</div>
   )
 }

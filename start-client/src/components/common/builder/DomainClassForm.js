@@ -18,7 +18,7 @@ function DomainClassForm() {
     dispatchInitializr({ type: 'UPDATE', payload: args })
   }
   const [useLombok, setUseLombok] = useState(() => {
-    return get(values, 'useLombok') === 'true'
+    return get(values, 'useLombok')
   })
 
   const handleClassNameChange = (event, index) => {
