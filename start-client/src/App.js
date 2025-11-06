@@ -24,7 +24,7 @@ render(
         <Routes>
           {/* <Route path='/' element={<Application />} /> */}
           <Route
-            path='/app'
+            path='/'
             element={
               <div style={{ display: 'flex' }}>
                 <Navbar />

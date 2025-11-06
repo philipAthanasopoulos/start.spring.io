@@ -7,6 +7,7 @@ import { LuLibraryBig } from 'react-icons/lu'
 import { Logo } from '../layout'
 import { AppContext } from '../../reducer/App'
 import Media from '../layout/Media'
+import { toast } from 'react-toastify'
 
 function Navbar() {
   const { dispatch, activeTab } = useContext(AppContext)
@@ -47,8 +48,9 @@ function Navbar() {
         <li
           // className={activeTab === 'diagram' ? 'selected' : ''}
           // onClick={() => dispatch({ type: 'SET_TAB', payload: 'diagram' })}
+          onClick={() => toast.info('Coming soon')}
         >
-          <BsDiagram2Fill /> Diagram <span className="badge">Coming soon</span>
+          <BsDiagram2Fill /> Diagram <span className='badge'>Coming soon</span>
         </li>
         <li
           className={activeTab === 'dependencies' ? 'selected' : ''}

@@ -56,10 +56,15 @@ $rt-toast-width: 400px;
     }
   }
   &--info {
-    border-left-color: $rt-color-info;
+    border-left-color: $dark-primary;
+    .toast-icon,
+    svg {
+      color: $dark-primary;
+      fill: $dark-primary;
+    }
   }
   &--success {
-    border-left-color: $rt-color-success;
+    border-left-color: $dark-primary;
   }
   &--warning {
     border-left-color: $rt-color-warning;
