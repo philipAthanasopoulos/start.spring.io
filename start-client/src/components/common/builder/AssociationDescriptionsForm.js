@@ -3,7 +3,7 @@ import { Control, FieldInput } from './index'
 import get from 'lodash/get'
 import { InitializrContext } from '../../reducer/Initializr'
 import { Button } from '../form'
-import { BiTrash } from 'react-icons/bi'
+import { BiPlusCircle, BiTrash } from 'react-icons/bi'
 import { FaArrowsTurnToDots } from 'react-icons/fa6'
 
 function AssociationDescriptionsForm() {
@@ -149,10 +149,10 @@ function AssociationDescriptionsForm() {
           variant='primary'
           onClick={handleAddAssociation}
         >
-          <span style={{ display: 'flex', alignItems: 'center' }}>
-            <i className='bi bi-plus-circle' style={{ paddingRight: '10px' }} />
+          <div className='add-association-btn'>
+            <BiPlusCircle />
             New Association
-          </span>
+          </div>
         </Button>
       </div>
     </Control>

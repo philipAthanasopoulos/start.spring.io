@@ -14,14 +14,13 @@ body {
 }
 
 #app {
-  max-width: $spring-max-width;
-  margin: 0 auto;
-  position: relative;
+  display: flex;
+  padding: 0;
+  margin: 0;
 }
 
 #side-left,
 #side-right {
-  position: absolute;
 
   .side-container {
     width: 75px;
@@ -148,10 +147,8 @@ body {
 }
 
 #main {
-  margin: 0 auto;
-  min-height: 100vh;
-  max-width: $spring-max-width;
-  padding: 50px;
+  flex: 1;
+  padding: 40px;
 }
 
 // Header
@@ -754,19 +751,13 @@ button.button {
 
 .navigation {
   background: $light-primary;
-  position: fixed;
-  z-index: 199;
-  left: 0;
-  width: 100%;
-  top: 0;
-  height: 100%;
+  z-index: 10000;
   color: white;
   overflow-x: hidden;
   overflow-y: auto;
 
   .navigation-content {
     padding: 0;
-    max-width: $spring-max-width;
     margin: 0 auto;
 
     .navigation-content-wrap {
@@ -1338,12 +1329,12 @@ ul.dependencies-list {
 // Overlay
 
 .overlay {
-  position: fixed;
-  z-index: 500;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  //position: fixed;
+  //z-index: 500;
+  //top: 0;
+  //left: 0;
+  //right: 0;
+  //bottom: 0;
   background: rgba(#ebf2f2, 0.8);
 
   &-enter {
@@ -1576,14 +1567,13 @@ option {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  //align-items: center;
-  background: darken(rgba($dark-background, 0.4), 10%);
+  background: $dark-background;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
-  max-width: $spring-max-width/6;
-
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  width: 260px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
 
   .logo {
     color: $dark-primary;
@@ -1591,40 +1581,55 @@ option {
     flex-direction: row;
     align-items: center;
     padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    h1 {
+      margin: 0 0 0 10px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   ul {
     display: flex;
     flex-direction: column;
-    padding: 0;
+    padding: 20px 0;
+    margin: 0;
+    flex-grow: 1;
   }
 
   li {
-    color: $dark-color;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration-line: none;
-    font-size: large;
-    display: inline-block;
-    padding: 20px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
     list-style: none;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-    -webkit-transition: color 200ms ease, text-decoration-color 200ms ease;
-    text-decoration-color: transparent;
-  }
-
-  li.selected {
-    background-color: $dark-placeholder;
-  }
-
-  li:hover {
+    transition: all 0.2s ease;
     cursor: pointer;
-    background-color: $dark-placeholder;
-    transition: ease-in-out 100ms;
-  }
+    gap: 12px;
 
-  li:hover:after {
-    cursor: pointer;
-    transition: ease-in-out 100ms;
+    svg {
+      font-size: 1.4rem;
+    }
+
+    &:hover {
+      color: white;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    &.selected {
+      color: $dark-primary;
+      background-color: rgba($dark-primary, 0.1);
+      border-right: 3px solid $dark-primary;
+    }
   }
 }
 
@@ -1707,6 +1712,13 @@ option {
   gap: 4px;
   align-items: center;
 }
+
+.add-association-btn {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
 
 .media-container {
   border-top: 1px solid rgba(255, 255, 255, 0.3);

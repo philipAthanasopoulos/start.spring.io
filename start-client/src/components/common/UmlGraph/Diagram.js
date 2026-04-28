@@ -19,17 +19,19 @@ export default function Diagram() {
         return null
       let arrow = '--'
       if (a.assotiationType === 'ONE_TO_ONE') {
-        arrow = `"1"--"1"`
+        arrow = '"1" -- "1"'
       } else if (a.assotiationType === 'ONE_TO_MANY') {
-        arrow = `"1"-->"*"`
+        arrow = '"1" --> "*"'
       } else if (a.assotiationType === 'MANY_TO_ONE') {
-        arrow = `"*"<--"1"`
+        arrow = '"*" <-- "1"'
       } else if (a.assotiationType === 'MANY_TO_MANY') {
-        arrow = `"*"<-->"*"`
+        arrow = '"*" -- "*"'
       } else {
         return null
       }
-      return ` ${a.firstClassName} ${arrow} ${a.secondClassName}\n`
+      const first = (a.firstClassName || 'Class').replace(/\s+/g, '_')
+      const second = (a.secondClassName || 'Class').replace(/\s+/g, '_')
+      return `${first} ${arrow} ${second}`
     })
     .filter(Boolean)
 
@@ -37,12 +39,11 @@ export default function Diagram() {
     classNames.length > 0 || associations.length > 0
       ? [
           'classDiagram',
-          ...classNames.map(
-            ({ name, fields }) =>
-              `class ${name || 'Class'} {\n${fields
-                .map(f => ` -${f.fieldName}`)
-                .join('\n')}\n}`
-          ),
+          ...classNames.map(({ name, fields }) => {
+            const sanitizedName = (name || 'Class').replace(/\s+/g, '_')
+            const fieldLines = fields.map(f => `  -${f.fieldName}`).join('\n')
+            return `class ${sanitizedName} {\n${fieldLines}\n}`
+          }),
           ...associations,
         ].join('\n')
       : null
@@ -50,9 +51,12 @@ export default function Diagram() {
   const ref = useRef(null)
   useEffect(() => {
     let cancelled = false
+    mermaid.initialize({ startOnLoad: false, securityLevel: 'loose', theme: 'dark' })
     if (ref.current && chart) {
+      const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`
+
       mermaid
-        .render('theGraph', chart)
+        .render(id, chart)
         .then(({ svg }) => {
           if (!cancelled && ref.current) {
             ref.current.innerHTML = svg
@@ -72,18 +76,17 @@ export default function Diagram() {
   }, [chart])
 
   return (
-    // <div
-    //   ref={ref}
-    //   style={{
-    //     display: 'flex',
-    //     overflow: 'auto',
-    //     paddingBottom: '100px',
-    //     maxWidth: '100%',
-    //     boxSizing: 'border-box',
-    //     alignContent: 'center',
-    //     justifyContent: 'center',
-    //   }}
-    // />
-    <div>Coming soon</div>
+    <div
+      ref={ref}
+      style={{
+        display: 'flex',
+        overflow: 'auto',
+        paddingBottom: '100px',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
+        alignContent: 'center',
+        justifyContent: 'center',
+      }}
+    />
   )
 }

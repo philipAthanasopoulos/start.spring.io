@@ -46,11 +46,12 @@ function Navbar() {
           <TbCirclesRelation /> Relationships
         </li>
         <li
-          // className={activeTab === 'diagram' ? 'selected' : ''}
-          // onClick={() => dispatch({ type: 'SET_TAB', payload: 'diagram' })}
-          onClick={() => toast.info('Coming soon')}
+          className={activeTab === 'diagram' ? 'selected' : ''}
+          onClick={() => dispatch({ type: 'SET_TAB', payload: 'diagram' })}
+          // onClick={() => toast.info('Coming soon')}
         >
-          <BsDiagram2Fill /> Diagram <span className='badge'>Coming soon</span>
+          <BsDiagram2Fill /> Diagram
+          <span className='badge'>NEW</span>
         </li>
         <li
           className={activeTab === 'dependencies' ? 'selected' : ''}

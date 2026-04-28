@@ -28,9 +28,7 @@ render(
             element={
               <div style={{ display: 'flex' }}>
                 <Navbar />
-                <div style={{ flex: 1, height: '100vh', overflowY: 'auto' }}>
-                  <Application />
-                </div>
+                <Application />
               </div>
             }
           />
