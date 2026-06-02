@@ -45,7 +45,7 @@ function Fields() {
               <Radio
                 name='language'
                 selected={get(values, 'language')}
-                options={get(config, 'lists.language')}
+                options={get(config, 'lists.language').slice(0,1)}
                 onChange={value => {
                   update({ language: value })
                 }}

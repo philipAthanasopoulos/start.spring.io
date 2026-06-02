@@ -19,28 +19,32 @@ function DatabaseForm() {
           {
             key: 'postgresql',
             text: 'PostgreSQL',
-            icon: SiPostgresql({ size: 30 }),
+            icon: SiPostgresql({ size: 30, color: '#008bb9' }),
             description:
               "The world's most advanced open source relational database.",
           },
-          { key: 'mysql', text: 'MySQL', icon: GrMysql({ size: 30 }) },
+          {
+            key: 'mysql',
+            text: 'MySQL',
+            icon: GrMysql({ size: 30, color: '#00758F' }),
+          },
           {
             key: 'mariadb',
             text: 'MariaDB',
-            icon: SiMariadb({ size: 30 }),
+            icon: SiMariadb({ size: 30, color: '#C0765A' }),
             description:
               'A community-developed fork of MySQL intended to remain free and open-source.',
           },
           {
             key: 'oracle',
             text: 'Oracle',
-            icon: GrOracle({ size: 30 }),
+            icon: GrOracle({ size: 30, color: '#f80000' }),
             description: "Oracle's relational database",
           },
           {
             key: 'sqlserver',
             text: 'SQL Server',
-            icon: BiLogoMicrosoft({ size: 30 }),
+            icon: BiLogoMicrosoft({ size: 30, color: '#00a1f1' }),
             description: "Microsoft's relational database",
           },
         ]}

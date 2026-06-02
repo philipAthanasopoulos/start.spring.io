@@ -16,7 +16,8 @@
     "test": "jest --reporters=jest-standard-reporter",
     "prettier": "prettier --write \"**/*.{{c,le,sc}ss,g?(raph)ql,htm?(l),js?(on|on5|onl|x|s),md?(x|wn),m?(ark)down,mkdn,ts?(x),vue,y?(a)ml}\"",
     "lint": "eslint 'src/**/*.{ts,tsx,js}'",
-    "fix": "eslint 'src/**/*.{ts,tsx,js}' --fix && import-sort --write 'src/**/*.{ts,tsx,js}' && yarn run prettier"
+    "fix": "eslint 'src/**/*.{ts,tsx,js}' --fix && import-sort --write 'src/**/*.{ts,tsx,js}' && yarn run prettier",
+    "deploy": "npm run build && firebase deploy"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
@@ -94,7 +95,7 @@
     "jszip": "^3.6.0",
     "lodash": "^4.17.21",
     "luxon": "^3.4.4",
-    "mermaid": "^11.11.0",
+    "mermaid": "^10.9.5",
     "plantuml-encoder": "^1.4.0",
     "plantuml-parser": "^0.4.0",
     "prism-react-renderer": "^1.2.0",
