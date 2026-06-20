@@ -482,27 +482,40 @@ hr.divider {
 
 a.button,
 button.button {
-  display: inline-block;
   position: relative;
-  border-radius: 20px;
-  border: 2px solid $light-color;
-  color: $light-color;
-  font-size: $spring-font-size - 1;
   text-decoration: none;
   text-transform: uppercase;
-  font-weight: 600;
   line-height: 1.23rem;
-  cursor: pointer;
   z-index: 1;
-  background: $light-background;
-  font-family: $spring-font-family;
+  //background: $light-background;
   @include transition(all calc($spring-transition-duration / 2));
 
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba($dark-primary, 0.1);
+  border: 1px dashed $dark-primary;
+  color: $dark-primary;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 4px $light-border;
+  &:hover {
+    background: rgba($dark-primary, 0.2);
+    border-style: solid;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba($dark-primary, 0.3);
   }
+
+  svg {
+    font-size: 0.8rem;
+  }
+
 
   span {
     display: inline-block;
@@ -523,33 +536,6 @@ button.button {
   span.button-content {
     display: inline-block;
     padding: 0;
-  }
-
-  &:hover,
-  &:disabled {
-    color: white;
-    background: $light-color;
-    border-color: $light-color;
-  }
-
-  &.active {
-    color: white;
-    background: $light-color;
-    border-color: $light-color;
-  }
-
-  &.inverse {
-    &:hover {
-      color: white;
-      background: $light-color;
-      border-color: $light-color;
-    }
-
-    &.active {
-      color: white;
-      background: $light-color;
-      border-color: $light-color;
-    }
   }
 
   &.lg {
@@ -1517,14 +1503,14 @@ select {
   display: inline-block;
   position: relative;
   border-radius: 20px;
-  border: 2px solid $light-color;
+  border: 2px solid $dark-primary;
   color: $light-color;
   padding: 0.7rem 1.2rem 0.6rem;
   font-size: $spring-font-size - 1;
   text-transform: capitalize;
   font-weight: 600;
   line-height: 1.23rem;
-  background: $light-background;
+  background: $dark-primary;
   font-family: $spring-font-family;
   cursor: pointer;
   @include transition(all calc($spring-transition-duration / 2));
@@ -1639,37 +1625,47 @@ option {
 }
 
 .box-option {
-  color: white;
+  color: $dark-color;
   display: flex;
   cursor: pointer;
-  border: 1px solid white;
+  border: 1px dashed $dark-primary;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   padding: 20px;
   background: none;
   border-radius: 20px;
+
+  &:hover {
+    transition: ease-in-out 1s ;
+  }
 }
 
 .box-option.selected {
   color: $dark-primary;
-  background: darken($dark-primary, 55%);
-  border-color: $dark-primary;
   font-weight: bolder;
+  border: solid;
   box-shadow: 0 0 20px 4px rgba($dark-primary, 0.5);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms;
   transform: scale(1.05);
 }
 
+
 .domain-description {
-  border: solid 1px #ddd;
-  border-left: solid 8px $dark-primary;
-  padding: 1.5rem;
-  margin: 1.5rem;
-  margin-left: 0;
-  border-radius: 12px;
+  border: solid 2px $light-border;
+  border-left: solid 6px $dark-primary;
+  padding: 2rem;
+  margin: 1.5rem 1.5rem 1.5rem 0;
+  border-radius: 8px;
   overflow: hidden;
-  transition: box-shadow 300ms ease, transform 200ms ease, padding 200ms ease, margin 200ms ease;
+  background: linear-gradient(135deg, rgba($dark-primary, 0.02) 0%, transparent 100%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 200ms ease, border-color 200ms ease;
+  
+  &:hover {
+    box-shadow: 0 4px 16px rgba($dark-primary, 0.12), 0 0 2px rgba($dark-primary, 0.08);
+    border-left-color: lighten($dark-primary, 10%);
+  }
 }
 
 .remove-btn {
@@ -1682,29 +1678,84 @@ option {
 
 .domain-field {
   display: flex;
-  justify-content: left;
+  justify-content: flex-start;
   align-items: center;
-  margin-bottom: 8px;
-  gap: 0.5rem;
+  margin-bottom: 1rem;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  background: rgba($dark-primary, 0.02);
+  transition: background-color 200ms ease;
+  
+  &:hover {
+    background: rgba($dark-primary, 0.04);
+  }
+  
+  input,
+  select {
+    flex: 1;
+    min-width: 120px;
+  }
 }
 
 .remove-field-btn {
-  padding: 2px 8px;
+  padding: 6px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #d60000;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 200ms ease;
+  flex-shrink: 0;
+  
+  &:hover {
+    background: rgba(214, 0, 0, 0.1);
+    color: darken(#d60000, 10%);
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 .add-field-btn {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 16px;
+  margin: 1.5rem 0 1rem 0;
+  gap: 0.5rem;
 }
 
 .remove-entity-btn {
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 1rem;
+  
+  button {
+    padding: 6px 10px;
+    background: transparent;
+    border: none;
+    color: #d60000;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms ease;
+    
+    &:hover {
+      background: rgba(214, 0, 0, 0.1);
+      color: darken(#d60000, 10%);
+    }
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
 }
 
 .add-domain-btn {

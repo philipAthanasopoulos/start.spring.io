@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
-import { InitializrContext } from '../../reducer/Initializr'
 import get from 'lodash/get'
+import PropTypes from 'prop-types'
+import { InitializrContext } from '../../reducer/Initializr'
 
 // eslint-disable-next-line react/prop-types
 function BoxOptions({ options }) {
@@ -11,6 +12,7 @@ function BoxOptions({ options }) {
     <div className='box-options'>
       {options.map((option, index) => (
         <button
+          type='button'
           className={`box-option ${selected === option.key ? 'selected' : ''}`}
           id={index}
           onClick={event => {
@@ -31,3 +33,14 @@ function BoxOptions({ options }) {
 }
 
 export default BoxOptions
+
+BoxOptions.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string.isRequired,
+      text: PropTypes.node,
+      icon: PropTypes.node,
+      description: PropTypes.node,
+    })
+  ).isRequired,
+}

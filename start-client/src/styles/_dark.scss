@@ -74,9 +74,17 @@ body.dark {
   }
   a.button,
   button.button {
-    border-color: $dark-color;
     background: $dark-background;
+    border: 1px dashed $dark-primary;
     color: $dark-color;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
 
     &:hover {
       color: $dark-background;
@@ -432,9 +440,9 @@ body.dark {
 
 //Select and Option
 select {
-  border-color: $dark-color;
-  background: $dark-background;
-  color: $dark-color;
+  border-color: $dark-placeholder;
+  background-color: $dark-background-secondary;
+  color: white;
   padding: 0.5rem;
   font-size: $spring-font-size - 1;
   &:focus {

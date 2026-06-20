@@ -446,6 +446,7 @@ export function reducer(state, action) {
         'oracle',
         'db2',
         'sqlserver',
+        'sqlite',
       ]
       const jpaId = 'data-jpa'
 
