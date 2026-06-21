@@ -24,6 +24,7 @@ import DomainClassForm from './common/builder/DomainClassForm'
 import AssociationDescriptionsForm from './common/builder/AssociationDescriptionsForm'
 import Actions from './common/builder/Actions'
 import Diagram from './common/UmlGraph/Diagram'
+import McpServerForm from './common/builder/McpServerForm'
 
 const Explore = lazy(() => import('./common/explore/Explore'))
 const Share = lazy(() => import('./common/share/Share'))
@@ -162,6 +163,7 @@ export default function Application() {
               <Dependency refButton={buttonDependency} />
             )}
             {activeTab === 'diagram' && <Diagram />}
+            {activeTab === 'mcp' && <McpServerForm />}
           </Form>
         )}
         <Actions>
