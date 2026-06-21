@@ -9,13 +9,6 @@ function Media() {
         <BsGithub size={size} />
       </a>
       <a
-        href='https://twitter.com/intent/tweet?text=Check%20out%20this%20page!&url=https%3A%2F%2Fbootcrane.dev'
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        <BsTwitterX size={size} />
-      </a>
-      <a
         href='https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fbootcrane.dev'
         target='_blank'
         rel='noopener noreferrer'

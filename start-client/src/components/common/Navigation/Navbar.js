@@ -10,16 +10,19 @@ import Media from '../layout/Media'
 import { toast } from 'react-toastify'
 import { VscMcp } from 'react-icons/vsc'
 import { GiCargoCrane } from 'react-icons/gi'
+import { Link } from 'react-router'
 
 function Navbar() {
   const { dispatch, activeTab } = useContext(AppContext)
 
   return (
     <div className='navbar'>
-      <div className='logo'>
-        <Logo />
-        <h1>Bootcrane</h1>
-      </div>
+      <Link to={'/'} style ={{ textDecoration: 'none', color: 'inherit' }}>
+        <div className='logo'>
+          <Logo />
+          <h1>Bootcrane</h1>
+        </div>
+      </Link>
       <ul>
         <li
           className={activeTab === 'project' ? 'selected' : ''}

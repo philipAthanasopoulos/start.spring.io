@@ -29,6 +29,8 @@ import {
 import { Logo } from '../layout'
 import { Button } from '../form'
 import MCP_QUERIES from './mcp-queries.json'
+import { BiServer } from 'react-icons/bi'
+import { AiOutlineArrowRight } from 'react-icons/ai'
 
 const CODE_EXAMPLE = `@RestController
 @RequestMapping("/api/users")
@@ -127,13 +129,13 @@ function Homepage() {
               id='try-now'
               variant='primary'
               onClick={goToApp}
-              className='btn-get-started'
+              className='button btn-get-started'
             >
-              <span className='btn-content'>Boot UP <FaArrowRight />
+              <span className='btn-content'>
+                Boot UP<AiOutlineArrowRight />
               </span>
               <span className='btn-logo'>
-                {'  '}
-                <Logo />{'  '}
+                <Logo />
               </span>
             </Button>
           </div>
@@ -261,7 +263,9 @@ function Homepage() {
           </div>
           <div className='feature-preview'>
             <div className='mcp-preview'>
-              <div className='pulse'></div>
+              <div className='pulse'>
+                <BiServer size={'40px'} />
+              </div>
               <div className='agent-icon copilot'>
                 <SiGithubcopilot />
                 {activeQueries
@@ -405,6 +409,12 @@ function Homepage() {
 
       <footer className='homepage-footer'>
         <p>&copy; 2026 Bootcrane. Built with developers in mind.</p>
+        <p>
+          Built while listening to{' '}
+          <a href='https://www.youtube.com/watch?v=PqCloRZ8iTI&list=RDPqCloRZ8iTI'>
+            @PizzaHotline
+          </a>
+        </p>
       </footer>
     </div>
   )

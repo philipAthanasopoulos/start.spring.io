@@ -599,7 +599,6 @@ button.button {
       display: inline-block;
       outline: none;
       box-shadow: none;
-      padding: 6px 7px 2px;
     }
   }
 }
@@ -1846,7 +1845,7 @@ option {
     .hero-actions {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      align-items: center;
 
       .button.btn-get-started {
         padding: 15px 40px;
@@ -1856,7 +1855,7 @@ option {
         display: flex;
         align-items: center;
         justify-content: center;
-        min-width: 220px;
+        align-content: center;
         background-color: $dark-primary;
         border-color: $dark-primary;
         color: $dark-background;
@@ -1869,6 +1868,7 @@ option {
             display: flex;
             align-items: center;
             justify-content: center;
+            justify-self: center;
             position: relative;
             width: 100%;
           }
@@ -2231,6 +2231,9 @@ option {
           border-radius: 50%;
           box-shadow: 0 0 0 0 rgba($dark-primary, 0.7);
           animation: pulse 2s infinite;
+          justify-content: center;
+          align-items: center;
+          display: flex;
         }
 
         .agent-icon {

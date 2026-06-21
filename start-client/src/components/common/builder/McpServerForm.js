@@ -8,6 +8,7 @@ import {
   SiPerplexity,
 } from 'react-icons/si'
 import MCP_QUERIES from '../homepage/mcp-queries.json'
+import { BiServer } from 'react-icons/bi'
 
 function McpServerForm(props) {
   const [activeQueries, setActiveQueries] = useState([])
@@ -52,7 +53,9 @@ function McpServerForm(props) {
           </div>
           <div className='feature-preview'>
             <div className='mcp-preview'>
-              <div className='pulse'></div>
+              <div className='pulse'>
+                <BiServer size={'40px'}/>
+              </div>
               <div className='agent-icon copilot'>
                 <SiGithubcopilot />
                 {activeQueries
@@ -138,7 +141,6 @@ function McpServerForm(props) {
                     </div>
                   ))}
               </div>
-              <span>MCP Server Active</span>
             </div>
           </div>
         </div>
