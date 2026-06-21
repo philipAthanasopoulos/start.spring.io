@@ -47,8 +47,8 @@ function Navbar() {
         </li>
         <li
           className={activeTab === 'diagram' ? 'selected' : ''}
-          // onClick={() => dispatch({ type: 'SET_TAB', payload: 'diagram' })}
-          onClick={() => toast.info('Coming soon')}
+          onClick={() => dispatch({ type: 'SET_TAB', payload: 'diagram' })}
+          // onClick={() => toast.info('Coming soon')}
         >
           <BsDiagram2Fill /> Diagram
           <span className='badge'>COMING SOON</span>
