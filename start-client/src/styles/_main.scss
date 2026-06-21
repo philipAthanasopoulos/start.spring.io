@@ -318,6 +318,7 @@ hr.divider {
 // Control
 
 .control {
+  display: block;
   padding: 0.6rem 0;
   max-width: $spring-max-width / 2;
   gap: 1rem;
@@ -482,7 +483,7 @@ hr.divider {
 
 a.button,
 button.button {
-  position: relative;
+  //position: relative;
   text-decoration: none;
   text-transform: uppercase;
   line-height: 1.23rem;
@@ -496,7 +497,7 @@ button.button {
   background: rgba($dark-primary, 0.1);
   border: 1px dashed $dark-primary;
   color: $dark-primary;
-  padding: 10px 15px;
+  //padding: 10px 15px;
   border-radius: 8px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.85rem;
@@ -1795,6 +1796,7 @@ option {
   color: $dark-background;
   border-radius: 20px;
   vertical-align: middle;
+  outline: dashed 2px rgba($dark-primary, 0.5);
 }
 
 // Homepage Styles

@@ -86,7 +86,7 @@ export default function LandingPage() {
             >
               GitHub
             </a>
-            <a className='lp-btn' href='/app'>
+            <a className='lp-btn' href='/#/app'>
               Launch App
             </a>
           </nav>
@@ -106,7 +106,7 @@ export default function LandingPage() {
               download your starter in seconds.
             </p>
             <div className='lp-actions'>
-              <a className='lp-btn' href='/app'>
+              <a className='lp-btn' href='/#/app'>
                 Try BootCrane Free
               </a>
               <a

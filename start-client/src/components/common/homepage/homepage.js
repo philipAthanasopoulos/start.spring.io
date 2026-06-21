@@ -129,12 +129,11 @@ function Homepage() {
               onClick={goToApp}
               className='btn-get-started'
             >
-              <span className='btn-content'>
-                Boot UP <FaArrowRight />
+              <span className='btn-content'>Boot UP <FaArrowRight />
               </span>
               <span className='btn-logo'>
-                {' '}
-                <Logo />{' '}
+                {'  '}
+                <Logo />{'  '}
               </span>
             </Button>
           </div>
@@ -232,7 +231,7 @@ function Homepage() {
             <div className='feature-icon'>
               <FaLayerGroup />
             </div>
-            <h3>Services, Repositories & Views</h3>
+            <h3>Services, Repos & Views</h3>
             <p>
               <BrightenText text='Full-stack generation including service layers, data repositories and Thymeleaf-powered web views.' />
             </p>
@@ -253,7 +252,9 @@ function Homepage() {
             <div className='feature-icon'>
               <FaBrain />
             </div>
-            <h3>MCP Server</h3>
+            <h3>
+              MCP Server <span className='badge'>coming soon</span>{' '}
+            </h3>
             <p>
               <BrightenText text='Built-in MCP (Model Context Protocol) server support for seamless AI-driven development.' />
             </p>

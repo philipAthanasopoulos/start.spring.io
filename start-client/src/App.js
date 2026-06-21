@@ -4,7 +4,7 @@ import React, { StrictMode } from 'react'
 import { ToastContainer } from 'react-toastify'
 // eslint-disable-next-line react/no-deprecated
 import { render } from 'react-dom'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { HashRouter, Route, Routes } from 'react-router'
 import Close from './components/common/form/Close'
 import { AppProvider } from './components/reducer/App'
 import { InitializrProvider } from './components/reducer/Initializr'
@@ -15,7 +15,7 @@ import Homepage from './components/common/homepage/homepage'
 console.disableYellowBox = true
 render(
   <StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <AppProvider>
         <InitializrProvider>
           <ToastContainer
@@ -37,7 +37,7 @@ render(
           </Routes>
         </InitializrProvider>
       </AppProvider>
-    </BrowserRouter>
+    </HashRouter>
   </StrictMode>,
   document.getElementById('app')
 )
