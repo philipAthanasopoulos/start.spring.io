@@ -55,6 +55,15 @@ const localStorage =
       }
 
 const getPersistedOrDefault = json => {
+  const getJsonItem = key => {
+    try {
+      const item = localStorage.getItem(key)
+      return item ? JSON.parse(item) : null
+    } catch (e) {
+      return null
+    }
+  }
+
   const values = {
     project:
       localStorage.getItem('project') || get(json, 'defaultValues').project,
@@ -62,9 +71,13 @@ const getPersistedOrDefault = json => {
       localStorage.getItem('language') || get(json, 'defaultValues').language,
     boot: get(json, 'defaultValues').boot,
     domainClassDescriptions:
-      get(json, 'defaultValues').domainClassDescriptions || [],
+      getJsonItem('domainClassDescriptions') ||
+      get(json, 'defaultValues').domainClassDescriptions ||
+      [],
     associationDescriptions:
-      get(json, 'defaultValues').associationDescriptions || [],
+      getJsonItem('associationDescriptions') ||
+      get(json, 'defaultValues').associationDescriptions ||
+      [],
     meta: {
       name: get(json, 'defaultValues.meta').name,
       group: get(json, 'defaultValues.meta').group,
@@ -99,30 +112,36 @@ const getPersistedOrDefault = json => {
   return values
 }
 
-const persist = changes => {
-  if (get(changes, 'project')) {
-    localStorage.setItem('project', get(changes, 'project'))
+const persist = values => {
+  if (get(values, 'project')) {
+    localStorage.setItem('project', get(values, 'project'))
   }
-  if (get(changes, 'language')) {
-    localStorage.setItem('language', get(changes, 'language'))
+  if (get(values, 'language')) {
+    localStorage.setItem('language', get(values, 'language'))
   }
-  if (get(changes, 'meta.packaging')) {
-    localStorage.setItem('packaging', get(changes, 'meta.packaging'))
+  if (get(values, 'meta.packaging')) {
+    localStorage.setItem('packaging', get(values, 'meta.packaging'))
   }
-  if (get(changes, 'meta.java')) {
-    localStorage.setItem('java', get(changes, 'meta.java'))
+  if (get(values, 'meta.java')) {
+    localStorage.setItem('java', get(values, 'meta.java'))
   }
-  if (get(changes, 'domainClassDescriptions')) {
+  if (get(values, 'domainClassDescriptions')) {
     localStorage.setItem(
       'domainClassDescriptions',
-      get(changes, 'domainClassDescriptions')
+      JSON.stringify(get(values, 'domainClassDescriptions'))
     )
   }
-  if (get(changes, 'associationDescriptions')) {
+  if (get(values, 'associationDescriptions')) {
     localStorage.setItem(
       'associationDescriptions',
-      get(changes, 'associationDescriptions')
+      JSON.stringify(get(values, 'associationDescriptions'))
     )
+  }
+  if (get(values, 'database')) {
+    localStorage.setItem('database', get(values, 'database'))
+  }
+  if (get(values, 'useLombok') !== undefined) {
+    localStorage.setItem('useLombok', get(values, 'useLombok'))
   }
 }
 
@@ -164,12 +183,21 @@ export function reducer(state, action) {
         )
         set(meta, 'name', `${get(meta, 'artifact')}`)
       }
-      persist(changes)
+
       const values = {
         ...get(state, 'values'),
         ...changes,
         meta,
       }
+
+      if (get(changes, 'domainClassDescriptions')) {
+        values.domainClassDescriptions = get(changes, 'domainClassDescriptions')
+      }
+      if (get(changes, 'associationDescriptions')) {
+        values.associationDescriptions = get(changes, 'associationDescriptions')
+      }
+
+      persist(values)
       return { ...state, values, share: getShareUrl(values), errors }
     }
     case 'LOAD': {
@@ -217,6 +245,7 @@ export function reducer(state, action) {
         ...get(values, 'domainClassDescriptions', []),
         newDomainClass,
       ]
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'REMOVE_DOMAIN_CLASS': {
@@ -227,6 +256,7 @@ export function reducer(state, action) {
         'domainClassDescriptions',
         []
       ).filter((_, i) => i !== index)
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'UPDATE_DOMAIN_CLASS': {
@@ -240,6 +270,7 @@ export function reducer(state, action) {
         [field]: value,
       }
       values.domainClassDescriptions = updatedDescriptions
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'ADD_FIELD': {
@@ -254,6 +285,7 @@ export function reducer(state, action) {
         fields: [...updatedDescriptions[classIndex].fields, newField],
       }
       values.domainClassDescriptions = updatedDescriptions
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'REMOVE_FIELD': {
@@ -269,6 +301,7 @@ export function reducer(state, action) {
         ),
       }
       values.domainClassDescriptions = updatedDescriptions
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'UPDATE_FIELD': {
@@ -284,6 +317,7 @@ export function reducer(state, action) {
         ),
       }
       values.domainClassDescriptions = updatedDescriptions
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'TOGGLE_LOMBOK': {
@@ -321,7 +355,7 @@ export function reducer(state, action) {
       values.domainClassDescriptions = updatedDescriptions
       values.dependencies = updatedDependencies
       values.useLombok = useLombok
-      localStorage.setItem('useLombok', useLombok)
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'TOGGLE_REST_CONTROLLER': {
@@ -358,6 +392,7 @@ export function reducer(state, action) {
 
       values.domainClassDescriptions = updatedDescriptions
       values.dependencies = updatedDependencies
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'TOGGLE_FRONTEND_CONTROLLER': {
@@ -396,6 +431,7 @@ export function reducer(state, action) {
 
       values.domainClassDescriptions = updatedDescriptions
       values.dependencies = updatedDependencies
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'ADD_ASSOCIATION': {
@@ -409,6 +445,7 @@ export function reducer(state, action) {
         ...get(values, 'associationDescriptions', []),
         newAssociation,
       ]
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'REMOVE_ASSOCIATION': {
@@ -419,6 +456,7 @@ export function reducer(state, action) {
         'associationDescriptions',
         []
       ).filter((_, i) => i !== index)
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'UPDATE_ASSOCIATION': {
@@ -432,6 +470,7 @@ export function reducer(state, action) {
         [field]: value,
       }
       values.associationDescriptions = updatedAssociations
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     case 'SELECT_DATABASE': {
@@ -469,7 +508,7 @@ export function reducer(state, action) {
 
       values.database = database
       values.dependencies = updatedDependencies
-      localStorage.setItem('database', database)
+      persist(values)
       return { ...state, values, share: getShareUrl(values) }
     }
     default:

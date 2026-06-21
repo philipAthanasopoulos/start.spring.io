@@ -51,7 +51,7 @@ function Navbar() {
           // onClick={() => toast.info('Coming soon')}
         >
           <BsDiagram2Fill /> Diagram
-          <span className='badge'>COMING SOON</span>
+          <span className='badge'>NEW</span>
         </li>
         <li
           className={activeTab === 'dependencies' ? 'selected' : ''}
